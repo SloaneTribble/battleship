@@ -6,6 +6,7 @@ const shipFactory = (length) => {
 
   const hit = function recordHitToHitLocations(location) {
     this.hitLocations.push(location - 1);
+    this.isSunk = checkIfSunk(this.hitLocations, this.shipLength);
   };
 
   return { shipLength, name, isSunk, hitLocations, hit };
@@ -26,6 +27,14 @@ const getShipName = function nameShip(length) {
       return "carrier";
       break;
   }
+};
+
+const checkIfSunk = function reviewHitLocations(hits, shipLength) {
+  const numberOfHits = hits.length;
+  if (numberOfHits === shipLength) {
+    return true;
+  }
+  return false;
 };
 
 export { shipFactory };
