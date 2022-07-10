@@ -1,5 +1,4 @@
 import { shipFactory } from "./ship";
-import { hit } from "./ship";
 
 test("Ship of length 3 is named 'submarine'", () => {
   const submarine = shipFactory(3);
