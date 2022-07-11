@@ -2,10 +2,12 @@ const shipFactory = (length) => {
   const shipLength = length;
   const name = getShipName(length);
   const isSunk = false;
+
+  // An array of arrays, each containing a coordinate occupied by ship
   const hitLocations = [];
 
   const hit = function recordHitToHitLocations(location) {
-    this.hitLocations.push(location - 1);
+    this.hitLocations.push(location);
     this.isSunk = checkIfSunk(this.hitLocations, this.shipLength);
   };
 

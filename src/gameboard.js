@@ -17,7 +17,7 @@ const gameBoardFactory = (player) => {
   // Whenever a ship is sunk, add to this array
   const sunkShips = [];
 
-  const placeShip = function placeShipWithOrientation(ship, orientation) {
+  const placeShip = function placeShipWithOrientation(ship, orientation, startingCoordinate) {
     
   };
 };
