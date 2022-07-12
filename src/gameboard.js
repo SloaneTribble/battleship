@@ -11,7 +11,11 @@ const gameBoardFactory = (player) => {
 
   // Record each ship with its respective coordinates
 
-  const ships = { dingy: [] };
+  const shipLocations = {};
+
+  // Record each ship object in its entirety
+
+  const shipObjects = [];
 
   /**
    * Keep track of which spaces have been attacked, regardless of hit or miss
@@ -53,20 +57,32 @@ const gameBoardFactory = (player) => {
         currentShipCoordinates.push(nextCoordinate);
       }
     }
-    ships[`${currentShip}`] = currentShipCoordinates;
+    shipLocations[currentShip.shipName] = currentShipCoordinates;
   };
 
   const receiveAttack = function determineHitByCoordinates(coordinates) {
     attackedSpaces.push(coordinates);
 
-    const hit = occupiedSpaces.some((a) =>
+    const isHit = occupiedSpaces.some((a) =>
       coordinates.every((v, i) => v === a[i])
     );
 
-    return hit;
+    const hitShip = checkHit(coordinates);
+
+    return `${hitShip} has been hit`;
   };
 
-  return { placeShip, occupiedSpaces, receiveAttack };
+  // Takes a pair of coordinates and see which boat they belong to
+  const checkHit = function checkWhichBoatWasHit(coordinates) {
+    for (const ship in shipLocations) {
+      const shipSpaces = Object.values(shipLocations[ship]);
+      const hit = shipSpaces.some((a) =>
+        coordinates.every((v, i) => v === a[i])
+      );
+      if (hit) return ship;
+    }
+  };
+  return { placeShip, occupiedSpaces, shipLocations, receiveAttack };
 };
 
 export { gameBoardFactory };
