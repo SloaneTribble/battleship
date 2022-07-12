@@ -59,9 +59,11 @@ const gameBoardFactory = (player) => {
   const receiveAttack = function determineHitByCoordinates(coordinates) {
     attackedSpaces.push(coordinates);
 
-    if (occupiedSpaces.includes(coordinates)) {
-      return 1;
-    }
+    const hit = occupiedSpaces.some((a) =>
+      coordinates.every((v, i) => v === a[i])
+    );
+
+    return hit;
   };
 
   return { placeShip, occupiedSpaces, receiveAttack };
