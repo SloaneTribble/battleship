@@ -9,7 +9,7 @@ const gameBoardFactory = (player) => {
    */
   const occupiedSpaces = [];
 
-  // Record each ship with its respective coordinates
+  // Record each ship's name with its respective coordinates
 
   const shipLocations = {};
 
@@ -35,10 +35,6 @@ const gameBoardFactory = (player) => {
   ) {
     const currentShip = shipFactory(shipName);
 
-    // Keep a record of entire ship
-
-    shipObjects.push(currentShip);
-
     const currentShipCoordinates = [];
 
     const length = currentShip.shipLength;
@@ -51,20 +47,42 @@ const gameBoardFactory = (player) => {
     const startingIndex = startingCoordinate[axisIndex];
     const endingIndex = startingIndex + length - 1;
 
+    const potentialSpaces = [];
+
     if (axisIndex === 0) {
       for (let i = startingIndex; i <= endingIndex; i++) {
         let nextCoordinate = [i, startingCoordinate[1]];
-        this.occupiedSpaces.push(nextCoordinate);
+        potentialSpaces.push(nextCoordinate);
+        // this.occupiedSpaces.push(nextCoordinate);
         currentShipCoordinates.push(nextCoordinate);
       }
     } else {
       for (let i = startingIndex; i <= endingIndex; i++) {
         let nextCoordinate = [startingCoordinate[0], i];
-        this.occupiedSpaces.push(nextCoordinate);
+        potentialSpaces.push(nextCoordinate);
+        // this.occupiedSpaces.push(nextCoordinate);
         currentShipCoordinates.push(nextCoordinate);
       }
     }
+
+     /**
+     *  Before updating gameboard's info, make sure new ship will not overlap others.
+     *  Calculate which spaces will be occupied, and make sure those spaces are not in the occupiedSpaces array
+     */
+
+    const conflict = checkAvailability(potentialSpaces);
+
+    if(conflict){return "Ships cannot overlap"}
+
+    for (const space in potentialSpaces) {
+      this.occupiedSpaces.push(potentialSpaces[space]);
+    }
+    // Keep a record of entire ship object
+    shipObjects.push(currentShip);
+
     shipLocations[currentShip.shipName] = currentShipCoordinates;
+
+    return `${shipName} was placed`
   };
 
   const receiveAttack = function determineHitByCoordinates(coordinates) {
@@ -79,9 +97,9 @@ const gameBoardFactory = (player) => {
       logHit(hitShip, coordinates);
 
       const isSunk = checkStatus(hitShip);
-        if (isSunk) {
-          sunkShips.push(shipObjects[ship]);
-        }
+      if (isSunk) {
+        sunkShips.push(shipObjects[ship]);
+      }
 
       return `${hitShip} has been hit`;
     } else {
@@ -100,6 +118,19 @@ const gameBoardFactory = (player) => {
     }
   };
 
+  // Take an array of spaces and make sure none of them are occupied
+  const checkAvailability = function checkIfSpacesAreOccupied(potentialSpaces){
+    const occupied = occupiedSpaces;
+  // Iterate through array of potential coords and see if any are occupied
+  for(const space in potentialSpaces){
+    const conflict = occupiedSpaces.some((a) =>
+      potentialSpaces[space].every((v, i) => v === a[i])
+    );
+    if(conflict){return true;}
+  }
+    
+  }
+
   const logHit = function recordHit(hitShip, coordinates) {
     for (const ship in shipObjects) {
       if (shipObjects[ship].shipName === hitShip) {
@@ -109,9 +140,9 @@ const gameBoardFactory = (player) => {
   };
 
   const checkStatus = function checkIfShipSank(hitShip) {
-    for (const ship in shipObjects){
-      if (shipObjects[ship].shipName === hitShip){
-        if(shipObjects[ship].isSunk){
+    for (const ship in shipObjects) {
+      if (shipObjects[ship].shipName === hitShip) {
+        if (shipObjects[ship].isSunk) {
           sunkShips.push(shipObjects[ship]);
         }
       }
