@@ -17,34 +17,37 @@ const gameBoardFactory = (player) => {
   // Whenever a ship is sunk, add to this array
   const sunkShips = [];
 
-  const placeShip = function placeShipWithOrientation(
-    shipName,
-    orientation,
-    startingCoordinate
-  ) {
-    const currentShip = shipFactory(shipName);
-
-    const length = currentShip.shipLength;
-    // If ship is placed horizontally, it will occupy several spaces along x-axis, and vice versa
-    const axisIndex = orientation === "horizontal" ? 0 : 1;
-
-    // Use ship length and orientation to spaces that it occupies, add those to gameboard's record
-
-    const startingIndex = startingCoordinate[axisIndex];
-    const endingIndex = startingIndex + length - 1;
-
-    if (axisIndex === 0) {
-      for (let i = startingIndex; i <= endingIndex; i++) {
-        occupiedSpaces.push([i, startingCoordinate[1]]);
-      }
-    } else {
-      for (let i = startingIndex; i <= endingIndex; i++) {
-        occupiedSpaces.push([startingCoordinate[0], i]);
-      }
-    }
-  };
+  const placeShip = shipPlacer;
 
   return { placeShip, occupiedSpaces };
 };
 
 export { gameBoardFactory };
+
+const shipPlacer = function placeShipWithOrientation(
+  shipName,
+  orientation,
+  startingCoordinate
+) {
+  const currentShip = shipFactory(shipName);
+
+  const length = currentShip.shipLength;
+
+  // If ship is placed horizontally, it will occupy several spaces along x-axis, and vice versa
+  const axisIndex = orientation === "horizontal" ? 0 : 1;
+
+  // Use ship length and orientation to spaces that it occupies, add those to gameboard's record
+
+  const startingIndex = startingCoordinate[axisIndex];
+  const endingIndex = startingIndex + length - 1;
+
+  if (axisIndex === 0) {
+    for (let i = startingIndex; i <= endingIndex; i++) {
+      this.occupiedSpaces.push([i, startingCoordinate[1]]);
+    }
+  } else {
+    for (let i = startingIndex; i <= endingIndex; i++) {
+      this.occupiedSpaces.push([startingCoordinate[0], i]);
+    }
+  }
+};
