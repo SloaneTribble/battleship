@@ -1,8 +1,8 @@
 import { shipFactory } from "./ship";
 
-test("Ship of length 3 is named 'submarine'", () => {
-  const submarine = shipFactory(3);
-  expect(submarine.name).toBe("submarine");
+test("Ship named 'submarine' will have length 3", () => {
+  const submarine = shipFactory('submarine');
+  expect(submarine.shipLength).toBe(3);
 });
 
 test("Hitting a ship at location 2 is recorded in 'hitLocations' property", () => {
@@ -11,8 +11,8 @@ test("Hitting a ship at location 2 is recorded in 'hitLocations' property", () =
   expect(submarine.hitLocations).toStrictEqual([[2, 1]]);
 });
 
-test("Calling hit() on a 3-length ship 3 times will cause it to sink", () => {
-  const submarine = shipFactory(3);
+test("Calling hit() on a submarine ship 3 times will cause it to sink", () => {
+  const submarine = shipFactory("submarine");
   submarine.hit([1, 2]);
   submarine.hit([2, 2]);
   submarine.hit([3, 2]);

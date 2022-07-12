@@ -1,6 +1,6 @@
-const shipFactory = (length) => {
-  const shipLength = length;
-  const name = getShipName(length);
+const shipFactory = (name) => {
+  const shipLength = getShipLength(name);
+  const shipName = name;
   const isSunk = false;
 
   // An array of arrays, each containing a coordinate occupied by ship
@@ -11,22 +11,22 @@ const shipFactory = (length) => {
     this.isSunk = checkIfSunk(this.hitLocations, this.shipLength);
   };
 
-  return { shipLength, name, isSunk, hitLocations, hit };
+  return { shipLength, shipName, isSunk, hitLocations, hit };
 };
 
-const getShipName = function nameShip(length) {
-  switch (length) {
-    case 2:
-      return "dingy";
+const getShipLength = function measureShip(name) {
+  switch (name) {
+    case "dingy":
+      return 2;
       break;
-    case 3:
-      return "submarine";
+    case "submarine":
+      return 3;
       break;
-    case 4:
-      return "battleship";
+    case "battleship":
+      return 4;
       break;
-    case 5:
-      return "carrier";
+    case "carrier":
+      return 5;
       break;
   }
 };
