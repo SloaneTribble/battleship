@@ -19,6 +19,9 @@ const getShipLength = function measureShip(name) {
     case "dingy":
       return 2;
       break;
+    case "dingy2":
+      return 2;
+      break;
     case "submarine":
       return 3;
       break;

@@ -3,6 +3,8 @@ import { shipFactory } from "./ship";
 const gameBoardFactory = (player) => {
   const boardOwner = player;
 
+  let gameOver = false;
+
   /**
    * Keep track of which spaces are occupied, hit or miss
    * Each space will be designated by an array with an x and y value
@@ -53,26 +55,26 @@ const gameBoardFactory = (player) => {
       for (let i = startingIndex; i <= endingIndex; i++) {
         let nextCoordinate = [i, startingCoordinate[1]];
         potentialSpaces.push(nextCoordinate);
-        // this.occupiedSpaces.push(nextCoordinate);
         currentShipCoordinates.push(nextCoordinate);
       }
     } else {
       for (let i = startingIndex; i <= endingIndex; i++) {
         let nextCoordinate = [startingCoordinate[0], i];
         potentialSpaces.push(nextCoordinate);
-        // this.occupiedSpaces.push(nextCoordinate);
         currentShipCoordinates.push(nextCoordinate);
       }
     }
 
-     /**
+    /**
      *  Before updating gameboard's info, make sure new ship will not overlap others.
      *  Calculate which spaces will be occupied, and make sure those spaces are not in the occupiedSpaces array
      */
 
     const conflict = checkAvailability(potentialSpaces);
 
-    if(conflict){return "Ships cannot overlap"}
+    if (conflict) {
+      return "Ships cannot overlap";
+    }
 
     for (const space in potentialSpaces) {
       this.occupiedSpaces.push(potentialSpaces[space]);
@@ -82,7 +84,7 @@ const gameBoardFactory = (player) => {
 
     shipLocations[currentShip.shipName] = currentShipCoordinates;
 
-    return `${shipName} was placed`
+    return `${shipName} was placed`;
   };
 
   const receiveAttack = function determineHitByCoordinates(coordinates) {
@@ -96,11 +98,10 @@ const gameBoardFactory = (player) => {
 
       logHit(hitShip, coordinates);
 
-      const isSunk = checkStatus(hitShip);
-      if (isSunk) {
-        sunkShips.push(shipObjects[ship]);
+      const sunk = checkStatus(hitShip);
+      if (sunk) {
+        return `${hitShip} has been sunk`;
       }
-
       return `${hitShip} has been hit`;
     } else {
       return "miss";
@@ -119,17 +120,17 @@ const gameBoardFactory = (player) => {
   };
 
   // Take an array of spaces and make sure none of them are occupied
-  const checkAvailability = function checkIfSpacesAreOccupied(potentialSpaces){
-    const occupied = occupiedSpaces;
-  // Iterate through array of potential coords and see if any are occupied
-  for(const space in potentialSpaces){
-    const conflict = occupiedSpaces.some((a) =>
-      potentialSpaces[space].every((v, i) => v === a[i])
-    );
-    if(conflict){return true;}
-  }
-    
-  }
+  const checkAvailability = function checkIfSpacesAreOccupied(potentialSpaces) {
+    // Iterate through array of potential coords and see if any are occupied
+    for (const space in potentialSpaces) {
+      const conflict = occupiedSpaces.some((a) =>
+        potentialSpaces[space].every((v, i) => v === a[i])
+      );
+      if (conflict) {
+        return true;
+      }
+    }
+  };
 
   const logHit = function recordHit(hitShip, coordinates) {
     for (const ship in shipObjects) {
@@ -144,11 +145,31 @@ const gameBoardFactory = (player) => {
       if (shipObjects[ship].shipName === hitShip) {
         if (shipObjects[ship].isSunk) {
           sunkShips.push(shipObjects[ship]);
+          return true;
         }
       }
     }
   };
-  return { placeShip, occupiedSpaces, shipLocations, sunkShips, receiveAttack };
+
+  const checkGame = function checkIfGameOver() {
+    if (this.sunkShips.length === 2) {
+      this.gameOver = !this.gameOver;
+    }
+
+    return this.gameOver;
+  };
+
+  return {
+    checkGame,
+    gameOver,
+    placeShip,
+    occupiedSpaces,
+    shipLocations,
+    shipObjects,
+    sunkShips,
+    receiveAttack,
+    attackedSpaces,
+  };
 };
 
 export { gameBoardFactory };

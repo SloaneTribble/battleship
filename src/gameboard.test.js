@@ -83,3 +83,39 @@ test("Player may not place overlapping ships", () => {
     "Ships cannot overlap"
   );
 });
+
+// HERE ********************************
+
+test("Gameboard should recognize when all its ships are sunk", () => {
+  const playerBoard = gameBoardFactory("Human");
+
+  playerBoard.placeShip("dingy", "vertical", [0, 0]);
+  playerBoard.placeShip("dingy2", "vertical", [1, 0]);
+
+  playerBoard.receiveAttack([0, 0]);
+  playerBoard.receiveAttack([0, 1]);
+  playerBoard.receiveAttack([1, 0]);
+  playerBoard.receiveAttack([1, 1]);
+
+  expect(playerBoard.checkGame()).toBe(true);
+});
+
+test("Multiple gameboards do not conflict with one another", () => {
+  const playerBoard = gameBoardFactory("Human");
+  const enemyBoard = gameBoardFactory("Foe");
+
+  playerBoard.placeShip("dingy", "vertical", [0, 0]);
+  playerBoard.placeShip("dingy2", "vertical", [1, 0]);
+
+  enemyBoard.placeShip("dingy", "vertical", [0, 0]);
+  enemyBoard.placeShip("dingy2", "vertical", [1, 0]);
+
+  playerBoard.receiveAttack([0, 0]);
+  playerBoard.receiveAttack([0, 1]);
+  playerBoard.receiveAttack([1, 0]);
+  playerBoard.receiveAttack([1, 1]);
+
+  expect(playerBoard.checkGame()).toBe(true);
+  expect(enemyBoard.checkGame()).toBe(false);
+  expect(enemyBoard.sunkShips.length).toBe(0);
+});
