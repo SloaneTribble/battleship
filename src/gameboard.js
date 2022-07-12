@@ -13,7 +13,10 @@ const gameBoardFactory = (player) => {
 
   const shipLocations = {};
 
-  // Record each ship object in its entirety
+  /**
+   * Record each ship object in its entirety
+   * They will always be stored in the same order, ascending in length
+   */
 
   const shipObjects = [];
 
@@ -31,6 +34,10 @@ const gameBoardFactory = (player) => {
     startingCoordinate
   ) {
     const currentShip = shipFactory(shipName);
+
+    // Keep a record of entire ship
+
+    shipObjects.push(currentShip);
 
     const currentShipCoordinates = [];
 
@@ -66,10 +73,20 @@ const gameBoardFactory = (player) => {
     const isHit = occupiedSpaces.some((a) =>
       coordinates.every((v, i) => v === a[i])
     );
+    if (isHit) {
+      const hitShip = checkHit(coordinates);
 
-    const hitShip = checkHit(coordinates);
+      logHit(hitShip, coordinates);
 
-    return `${hitShip} has been hit`;
+      const isSunk = checkStatus(hitShip);
+        if (isSunk) {
+          sunkShips.push(shipObjects[ship]);
+        }
+
+      return `${hitShip} has been hit`;
+    } else {
+      return "miss";
+    }
   };
 
   // Takes a pair of coordinates and see which boat they belong to
@@ -82,7 +99,25 @@ const gameBoardFactory = (player) => {
       if (hit) return ship;
     }
   };
-  return { placeShip, occupiedSpaces, shipLocations, receiveAttack };
+
+  const logHit = function recordHit(hitShip, coordinates) {
+    for (const ship in shipObjects) {
+      if (shipObjects[ship].shipName === hitShip) {
+        shipObjects[ship].hit(coordinates);
+      }
+    }
+  };
+
+  const checkStatus = function checkIfShipSank(hitShip) {
+    for (const ship in shipObjects){
+      if (shipObjects[ship].shipName === hitShip){
+        if(shipObjects[ship].isSunk){
+          sunkShips.push(shipObjects[ship]);
+        }
+      }
+    }
+  };
+  return { placeShip, occupiedSpaces, shipLocations, sunkShips, receiveAttack };
 };
 
 export { gameBoardFactory };

@@ -46,10 +46,32 @@ test("Placing a dingy will be recorded in the gameboard's ships section", () => 
   });
 });
 
-test.only("Receiving a hit where dingy is placed will alert that dingy has been hit", () => {
+test("Receiving a hit where dingy is placed will alert that dingy has been hit", () => {
   const playerBoard = gameBoardFactory("Human");
 
   playerBoard.placeShip("dingy", "vertical", [0, 0]);
 
   expect(playerBoard.receiveAttack([0, 1])).toBe("dingy has been hit");
+});
+
+test("Attacking a spot with no boats will return a miss", () => {
+  const playerBoard = gameBoardFactory("Human");
+
+  playerBoard.placeShip("dingy", "vertical", [0, 0]);
+
+  expect(playerBoard.receiveAttack([3, 3])).toBe("miss");
+});
+
+
+// Test with other boats, and make sure that misses are not recorded as hits
+
+test.only("Hitting a dingy twice will cause it to sink", () => {
+  const playerBoard = gameBoardFactory("Human");
+
+  playerBoard.placeShip("dingy", "vertical", [0, 0]);
+
+  playerBoard.receiveAttack([0, 0]);
+  playerBoard.receiveAttack([0, 1]);
+
+  expect(playerBoard.sunkShips[0].shipName).toBe("dingy");
 });
