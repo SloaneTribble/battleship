@@ -76,6 +76,12 @@ const gameBoardFactory = (player) => {
       return "Ships cannot overlap";
     }
 
+    const outOfBounds = checkBounds(potentialSpaces);
+
+    if (outOfBounds){
+      return "Out of bounds";
+    }
+
     for (const space in potentialSpaces) {
       this.occupiedSpaces.push(potentialSpaces[space]);
     }
@@ -127,6 +133,16 @@ const gameBoardFactory = (player) => {
         potentialSpaces[space].every((v, i) => v === a[i])
       );
       if (conflict) {
+        return true;
+      }
+    }
+  };
+
+  // Take an array of spaces and make sure none are out of bounds
+  const checkBounds = function checkIfOutOfBounds(potentialSpaces) {
+    for (const space in potentialSpaces) {
+      let coord = potentialSpaces[space];
+      if (coord[0] > 10 || coord[1] > 10) {
         return true;
       }
     }

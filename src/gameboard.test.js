@@ -84,8 +84,6 @@ test("Player may not place overlapping ships", () => {
   );
 });
 
-// HERE ********************************
-
 test("Gameboard should recognize when all its ships are sunk", () => {
   const playerBoard = gameBoardFactory("Human");
 
@@ -118,4 +116,20 @@ test("Multiple gameboards do not conflict with one another", () => {
   expect(playerBoard.checkGame()).toBe(true);
   expect(enemyBoard.checkGame()).toBe(false);
   expect(enemyBoard.sunkShips.length).toBe(0);
+});
+
+test("Player may not place ship out of horizontal bounds", () => {
+  const playerBoard = gameBoardFactory("Human");
+
+  expect(playerBoard.placeShip("dingy", "vertical", [11, 0])).toBe(
+    "Out of bounds"
+  );
+});
+
+test("Player may not place ship out of vertical bounds", () => {
+  const playerBoard = gameBoardFactory("Human");
+
+  expect(playerBoard.placeShip("dingy", "vertical", [0, 11])).toBe(
+    "Out of bounds"
+  );
 });
