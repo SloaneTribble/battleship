@@ -6,11 +6,12 @@ test("Successful human attacks to AI will be recorded to human object", () => {
 
   const enemyBoard = gameBoardFactory();
 
-  enemyBoard.placeShip("dingy1", "horizontal", [4, 3]);
+  enemyBoard.placeShip("dingy", "horizontal", [4, 3]);
 
   player.attack(enemyBoard, [4,3]);
 
-  expect(enemyBoard.attackedSpaces).toStrictEqual([[4,3]]);
-  expect(player.successfulAttacks).toStrictEqual([4,3]);
+  expect(enemyBoard.getAttackedSpaces()).toStrictEqual([[4,3]]);
+
+  expect(player.getSuccessfulAttacks()).toStrictEqual([[4,3]]);
 
 });

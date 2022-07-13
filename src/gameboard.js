@@ -173,6 +173,10 @@ const gameBoardFactory = function makeGameBoard() {
     return this.gameOver;
   };
 
+  const getAttackedSpaces = function showAttackedSpaces() {
+    return this.attackedSpaces;
+  };
+
   const board = {
     checkGame,
     gameOver,
@@ -183,6 +187,7 @@ const gameBoardFactory = function makeGameBoard() {
     sunkShips,
     receiveAttack,
     attackedSpaces,
+    getAttackedSpaces
   };
 
   return board;

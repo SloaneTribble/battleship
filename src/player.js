@@ -17,10 +17,10 @@ const playerFactory = function createPlayer(playerName) {
 
   /**
    * Attempts to take a gameBoard object (created with a factory function), and
-   * then call that object's receiveAttack method.  receiveAttack() is meant to modify the gameBoard object 
+   * then call that object's receiveAttack method.  receiveAttack() is meant to modify the gameBoard object
    * and return a string describing the modifications that took place
-   */ 
-  
+   */
+
   const attack = function attackEnemy(enemyBoard, coordinates) {
     // If AI is attacking, coordinates must be randomly generated
     const target = coordinates;
@@ -40,7 +40,16 @@ const playerFactory = function createPlayer(playerName) {
     }
   };
 
-  const player = { missedAttacks, successfulAttacks, attack };
+  const getSuccessfulAttacks = function showSuccess() {
+    return this.successfulAttacks;
+  };
+
+  const player = {
+    missedAttacks,
+    successfulAttacks,
+    attack,
+    getSuccessfulAttacks,
+  };
   return player;
 };
 
