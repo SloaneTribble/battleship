@@ -62,8 +62,6 @@ test("Attacking a spot with no boats will return a miss", () => {
   expect(playerBoard.receiveAttack([3, 3])).toBe("miss");
 });
 
-// Test with other boats, and make sure that misses are not recorded as hits
-
 test("Hitting a dingy twice will cause it to sink", () => {
   const playerBoard = gameBoardFactory("Human");
 

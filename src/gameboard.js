@@ -1,9 +1,7 @@
 import { shipFactory } from "./ship";
 
-const gameBoardFactory = (player) => {
-  const boardOwner = player;
-
-  let gameOver = false;
+const gameBoardFactory = function makeGameBoard() {
+  const gameOver = false;
 
   /**
    * Keep track of which spaces are occupied, hit or miss
@@ -78,7 +76,7 @@ const gameBoardFactory = (player) => {
 
     const outOfBounds = checkBounds(potentialSpaces);
 
-    if (outOfBounds){
+    if (outOfBounds) {
       return "Out of bounds";
     }
 
@@ -86,15 +84,15 @@ const gameBoardFactory = (player) => {
       this.occupiedSpaces.push(potentialSpaces[space]);
     }
     // Keep a record of entire ship object
-    shipObjects.push(currentShip);
+    this.shipObjects.push(currentShip);
 
-    shipLocations[currentShip.shipName] = currentShipCoordinates;
+    this.shipLocations[currentShip.shipName] = currentShipCoordinates;
 
     return `${shipName} was placed`;
   };
 
   const receiveAttack = function determineHitByCoordinates(coordinates) {
-    attackedSpaces.push(coordinates);
+    this.attackedSpaces.push(coordinates);
 
     const isHit = occupiedSpaces.some((a) =>
       coordinates.every((v, i) => v === a[i])
@@ -175,7 +173,7 @@ const gameBoardFactory = (player) => {
     return this.gameOver;
   };
 
-  return {
+  const board = {
     checkGame,
     gameOver,
     placeShip,
@@ -186,6 +184,8 @@ const gameBoardFactory = (player) => {
     receiveAttack,
     attackedSpaces,
   };
+
+  return board;
 };
 
 export { gameBoardFactory };
