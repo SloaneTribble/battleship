@@ -73,6 +73,17 @@ test("Hitting a dingy twice will cause it to sink", () => {
   expect(playerBoard.sunkShips[0].shipName).toBe("dingy");
 });
 
+test("No spot may be attacked twice", ()=>{
+  const playerBoard = gameBoardFactory("Human");
+
+  playerBoard.placeShip("dingy", "vertical", [0, 0]);
+
+  playerBoard.receiveAttack([0, 0]);
+  const secondHit = playerBoard.receiveAttack([0, 0]);
+
+  expect(secondHit).toBe("cannot attack same spot twice");
+})
+
 test("Player may not place overlapping ships", () => {
   const playerBoard = gameBoardFactory("Human");
 

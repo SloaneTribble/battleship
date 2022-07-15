@@ -92,6 +92,16 @@ const gameBoardFactory = function makeGameBoard() {
   };
 
   const receiveAttack = function determineHitByCoordinates(coordinates) {
+    // Must check if spot has already been attacked
+
+    const hitConflict = attackedSpaces.some((a)=> 
+      coordinates.every((v,i) => v === a[i])
+    );
+
+    if(hitConflict){
+      return "cannot attack same spot twice";
+    }
+
     this.attackedSpaces.push(coordinates);
 
     const isHit = occupiedSpaces.some((a) =>
