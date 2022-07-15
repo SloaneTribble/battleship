@@ -75,4 +75,17 @@ test("AI attacks against human will be recorded to AI object", () => {
   expect(humanBoard.attackedSpaces.length).toBe(2);
 });
 
+test("If AI has no spaces to attack, a useful message will be returned",()=>{
+  const AI = playerFactory("AI");
 
+  const humanBoard = gameBoardFactory();
+
+  humanBoard.placeShip("dingy", "vertical", [2,2]);
+
+  for(let i = 0; i < 257; i++){
+    AI.attack(humanBoard, "auto");
+  }
+  expect(humanBoard.attackedSpaces.length).toBe(256);
+
+  expect(AI.attack(humanBoard, "auto")).toBe("No available spaces");
+});
