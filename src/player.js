@@ -22,14 +22,45 @@ const playerFactory = function createPlayer(playerName) {
    */
 
   const attack = function attackEnemy(enemyBoard, coordinates) {
-    // If AI is attacking, coordinates must be randomly generated
-    const target = coordinates;
+    // If AI is attacking, generate random, available coordinates
+    if (coordinates === "auto") {
+      coordinates = generateCoordinates(enemyBoard);
+
+      if (coordinates === "No available spaces"){
+        return "No available spaces";
+      }
+    }
 
     const result = enemyBoard.receiveAttack(coordinates);
 
     logResult(result, coordinates);
 
     return result;
+  };
+
+  const generateCoordinates = function generateXAndY(board) {
+    let target = "invalid";
+    let attempts = 0;
+
+    while (target === "invalid") {
+      attempts++;
+
+      if (attempts > 256){
+        return "No available spaces";
+      }
+      let possibleCoordinates = [];
+      let x = getRandomNumberBetween(0, 15);
+      let y = getRandomNumberBetween(0, 15);
+      possibleCoordinates.push(x);
+      possibleCoordinates.push(y);
+
+      let conflict = board.checkOverlap(board.attackedSpaces, possibleCoordinates);
+
+      if (!conflict) {
+        target = "valid";
+        return possibleCoordinates;
+      }
+    }
   };
 
   const logResult = function pushCoordinatesToArray(result, coordinates) {
@@ -49,8 +80,13 @@ const playerFactory = function createPlayer(playerName) {
     successfulAttacks,
     attack,
     getSuccessfulAttacks,
+    generateCoordinates,
   };
   return player;
 };
 
 export { playerFactory };
+
+function getRandomNumberBetween(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}

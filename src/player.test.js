@@ -45,4 +45,34 @@ test("Valid attacks by human against AI will return a useful message", () => {
   expect(miss).toBe("miss");
 });
 
+test("Invalid attacks by human against AI will return a useful message", () => {
+  const player = playerFactory("human");
+
+  const enemyBoard = gameBoardFactory();
+
+  enemyBoard.placeShip("dingy", "horizontal", [4, 3]);
+
+  player.attack(enemyBoard, [0, 0]);
+
+  const invalidAttack = player.attack(enemyBoard, [0, 0]);
+
+  expect(invalidAttack).toBe("cannot attack same spot twice");
+});
+
+test("AI attacks against human will be recorded to AI object", () => {
+  const AI = playerFactory("AI");
+
+  const humanBoard = gameBoardFactory();
+
+  humanBoard.placeShip("dingy", "vertical", [2,2]);
+
+  AI.attack(humanBoard, "auto");
+
+  expect(humanBoard.attackedSpaces.length).toBe(1);
+
+  AI.attack(humanBoard, "auto");
+
+  expect(humanBoard.attackedSpaces.length).toBe(2);
+});
+
 

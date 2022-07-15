@@ -82,6 +82,7 @@ test("No spot may be attacked twice", ()=>{
   const secondHit = playerBoard.receiveAttack([0, 0]);
 
   expect(secondHit).toBe("cannot attack same spot twice");
+  expect(playerBoard.sunkShips.length).toBe(0);
 })
 
 test("Player may not place overlapping ships", () => {

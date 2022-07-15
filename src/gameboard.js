@@ -94,19 +94,15 @@ const gameBoardFactory = function makeGameBoard() {
   const receiveAttack = function determineHitByCoordinates(coordinates) {
     // Must check if spot has already been attacked
 
-    const hitConflict = attackedSpaces.some((a)=> 
-      coordinates.every((v,i) => v === a[i])
-    );
+    const hitConflict = checkOverlap(attackedSpaces, coordinates);
 
-    if(hitConflict){
+    if (hitConflict) {
       return "cannot attack same spot twice";
     }
 
     this.attackedSpaces.push(coordinates);
 
-    const isHit = occupiedSpaces.some((a) =>
-      coordinates.every((v, i) => v === a[i])
-    );
+    const isHit = checkOverlap(occupiedSpaces, coordinates);
     if (isHit) {
       const hitShip = checkHit(coordinates);
 
@@ -120,6 +116,13 @@ const gameBoardFactory = function makeGameBoard() {
     } else {
       return "miss";
     }
+  };
+
+  const checkOverlap = function checkIfCoordinatesMatchArray(
+    array,
+    coordinates
+  ) {
+    return array.some((a) => coordinates.every((v, i) => v === a[i]));
   };
 
   // Takes a pair of coordinates and see which boat they belong to
@@ -193,6 +196,7 @@ const gameBoardFactory = function makeGameBoard() {
     sunkShips,
     receiveAttack,
     attackedSpaces,
+    checkOverlap,
   };
 
   return board;
