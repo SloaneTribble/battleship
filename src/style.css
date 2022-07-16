@@ -79,3 +79,7 @@ body{
 .empty{
     background-color: aqua;
 }
+
+.occupied{
+    background-color: darkorange;
+}

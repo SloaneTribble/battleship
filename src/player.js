@@ -11,6 +11,8 @@
 const playerFactory = function createPlayer(playerName) {
   const name = playerName;
 
+  const turn = false;
+
   const successfulAttacks = [];
 
   const missedAttacks = [];
@@ -26,7 +28,7 @@ const playerFactory = function createPlayer(playerName) {
     if (coordinates === "auto") {
       coordinates = generateCoordinates(enemyBoard);
 
-      if (coordinates === "No available spaces"){
+      if (coordinates === "No available spaces") {
         return "No available spaces";
       }
     }
@@ -42,8 +44,7 @@ const playerFactory = function createPlayer(playerName) {
     let target = "invalid";
 
     while (target === "invalid") {
-
-      if (board.attackedSpaces.length > 256){
+      if (board.attackedSpaces.length > 256) {
         return "No available spaces";
       }
       let possibleCoordinates = [];
@@ -52,7 +53,10 @@ const playerFactory = function createPlayer(playerName) {
       possibleCoordinates.push(x);
       possibleCoordinates.push(y);
 
-      let conflict = board.checkOverlap(board.attackedSpaces, possibleCoordinates);
+      let conflict = board.checkOverlap(
+        board.attackedSpaces,
+        possibleCoordinates
+      );
 
       if (!conflict) {
         target = "valid";
@@ -79,6 +83,7 @@ const playerFactory = function createPlayer(playerName) {
     attack,
     getSuccessfulAttacks,
     generateCoordinates,
+    turn,
   };
   return player;
 };

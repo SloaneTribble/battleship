@@ -21,7 +21,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "html,\nbody{\n    box-sizing: border-box;\n    position: relative;\n    min-width: 800px;\n    max-width: 100vw;\n    margin: 0;\n    padding: 0; \n}\n\nbody{\n    min-height: 100vh;\n    display: flex;\n    flex: 1;\n}\n*,\n*:before,\n*:after{\n    box-sizing: inherit;\n    max-width: 100vw;\n    margin: 0;\n}\n\n.page-container{\n    min-width: 800px;\n    width: 100%;\n    display: grid;\n    grid-template-rows: .8fr 80% 1fr;\n    grid-template-columns: 100%;\n}\n\n.game-container{\n    min-width: 800px;\n    border: 2px solid black;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    grid-column: 1/ 4;\n}\n\n.user-container,\n.ai-container{\n    border: 1px solid black;\n    display: grid;\n    grid-template-rows: 1fr 10fr 1fr;\n    justify-items: center;\n    align-items: center;\n    width: 100%;\n    \n}\n\n.player-title{\n    border: .5px solid black;\n    width: 90%;\n    height: 90%;\n    text-align: center;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.user-board,\n.ai-board{\n    border: 1px solid black;\n    height: 90%;\n    width: 90%;\n    display: grid;\n}\n\n.board{\n    display: grid;\n    grid-template-columns: repeat(16, 1fr);\n}\n\n.board-cell{\n    border: .1px solid black;\n    font-size: 1rem;\n}\n\n.empty{\n    background-color: aqua;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;;IAEI,sBAAsB;IACtB,kBAAkB;IAClB,gBAAgB;IAChB,gBAAgB;IAChB,SAAS;IACT,UAAU;AACd;;AAEA;IACI,iBAAiB;IACjB,aAAa;IACb,OAAO;AACX;AACA;;;IAGI,mBAAmB;IACnB,gBAAgB;IAChB,SAAS;AACb;;AAEA;IACI,gBAAgB;IAChB,WAAW;IACX,aAAa;IACb,gCAAgC;IAChC,2BAA2B;AAC/B;;AAEA;IACI,gBAAgB;IAChB,uBAAuB;IACvB,aAAa;IACb,8BAA8B;IAC9B,iBAAiB;AACrB;;AAEA;;IAEI,uBAAuB;IACvB,aAAa;IACb,gCAAgC;IAChC,qBAAqB;IACrB,mBAAmB;IACnB,WAAW;;AAEf;;AAEA;IACI,wBAAwB;IACxB,UAAU;IACV,WAAW;IACX,kBAAkB;IAClB,aAAa;IACb,uBAAuB;IACvB,mBAAmB;AACvB;;AAEA;;IAEI,uBAAuB;IACvB,WAAW;IACX,UAAU;IACV,aAAa;AACjB;;AAEA;IACI,aAAa;IACb,sCAAsC;AAC1C;;AAEA;IACI,wBAAwB;IACxB,eAAe;AACnB;;AAEA;IACI,sBAAsB;AAC1B","sourcesContent":["html,\nbody{\n    box-sizing: border-box;\n    position: relative;\n    min-width: 800px;\n    max-width: 100vw;\n    margin: 0;\n    padding: 0; \n}\n\nbody{\n    min-height: 100vh;\n    display: flex;\n    flex: 1;\n}\n*,\n*:before,\n*:after{\n    box-sizing: inherit;\n    max-width: 100vw;\n    margin: 0;\n}\n\n.page-container{\n    min-width: 800px;\n    width: 100%;\n    display: grid;\n    grid-template-rows: .8fr 80% 1fr;\n    grid-template-columns: 100%;\n}\n\n.game-container{\n    min-width: 800px;\n    border: 2px solid black;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    grid-column: 1/ 4;\n}\n\n.user-container,\n.ai-container{\n    border: 1px solid black;\n    display: grid;\n    grid-template-rows: 1fr 10fr 1fr;\n    justify-items: center;\n    align-items: center;\n    width: 100%;\n    \n}\n\n.player-title{\n    border: .5px solid black;\n    width: 90%;\n    height: 90%;\n    text-align: center;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.user-board,\n.ai-board{\n    border: 1px solid black;\n    height: 90%;\n    width: 90%;\n    display: grid;\n}\n\n.board{\n    display: grid;\n    grid-template-columns: repeat(16, 1fr);\n}\n\n.board-cell{\n    border: .1px solid black;\n    font-size: 1rem;\n}\n\n.empty{\n    background-color: aqua;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "html,\nbody{\n    box-sizing: border-box;\n    position: relative;\n    min-width: 800px;\n    max-width: 100vw;\n    margin: 0;\n    padding: 0; \n}\n\nbody{\n    min-height: 100vh;\n    display: flex;\n    flex: 1;\n}\n*,\n*:before,\n*:after{\n    box-sizing: inherit;\n    max-width: 100vw;\n    margin: 0;\n}\n\n.page-container{\n    min-width: 800px;\n    width: 100%;\n    display: grid;\n    grid-template-rows: .8fr 80% 1fr;\n    grid-template-columns: 100%;\n}\n\n.game-container{\n    min-width: 800px;\n    border: 2px solid black;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    grid-column: 1/ 4;\n}\n\n.user-container,\n.ai-container{\n    border: 1px solid black;\n    display: grid;\n    grid-template-rows: 1fr 10fr 1fr;\n    justify-items: center;\n    align-items: center;\n    width: 100%;\n    \n}\n\n.player-title{\n    border: .5px solid black;\n    width: 90%;\n    height: 90%;\n    text-align: center;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.user-board,\n.ai-board{\n    border: 1px solid black;\n    height: 90%;\n    width: 90%;\n    display: grid;\n}\n\n.board{\n    display: grid;\n    grid-template-columns: repeat(16, 1fr);\n}\n\n.board-cell{\n    border: .1px solid black;\n    font-size: 1rem;\n}\n\n.empty{\n    background-color: aqua;\n}\n\n.occupied{\n    background-color: darkorange;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;;IAEI,sBAAsB;IACtB,kBAAkB;IAClB,gBAAgB;IAChB,gBAAgB;IAChB,SAAS;IACT,UAAU;AACd;;AAEA;IACI,iBAAiB;IACjB,aAAa;IACb,OAAO;AACX;AACA;;;IAGI,mBAAmB;IACnB,gBAAgB;IAChB,SAAS;AACb;;AAEA;IACI,gBAAgB;IAChB,WAAW;IACX,aAAa;IACb,gCAAgC;IAChC,2BAA2B;AAC/B;;AAEA;IACI,gBAAgB;IAChB,uBAAuB;IACvB,aAAa;IACb,8BAA8B;IAC9B,iBAAiB;AACrB;;AAEA;;IAEI,uBAAuB;IACvB,aAAa;IACb,gCAAgC;IAChC,qBAAqB;IACrB,mBAAmB;IACnB,WAAW;;AAEf;;AAEA;IACI,wBAAwB;IACxB,UAAU;IACV,WAAW;IACX,kBAAkB;IAClB,aAAa;IACb,uBAAuB;IACvB,mBAAmB;AACvB;;AAEA;;IAEI,uBAAuB;IACvB,WAAW;IACX,UAAU;IACV,aAAa;AACjB;;AAEA;IACI,aAAa;IACb,sCAAsC;AAC1C;;AAEA;IACI,wBAAwB;IACxB,eAAe;AACnB;;AAEA;IACI,sBAAsB;AAC1B;;AAEA;IACI,4BAA4B;AAChC","sourcesContent":["html,\nbody{\n    box-sizing: border-box;\n    position: relative;\n    min-width: 800px;\n    max-width: 100vw;\n    margin: 0;\n    padding: 0; \n}\n\nbody{\n    min-height: 100vh;\n    display: flex;\n    flex: 1;\n}\n*,\n*:before,\n*:after{\n    box-sizing: inherit;\n    max-width: 100vw;\n    margin: 0;\n}\n\n.page-container{\n    min-width: 800px;\n    width: 100%;\n    display: grid;\n    grid-template-rows: .8fr 80% 1fr;\n    grid-template-columns: 100%;\n}\n\n.game-container{\n    min-width: 800px;\n    border: 2px solid black;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    grid-column: 1/ 4;\n}\n\n.user-container,\n.ai-container{\n    border: 1px solid black;\n    display: grid;\n    grid-template-rows: 1fr 10fr 1fr;\n    justify-items: center;\n    align-items: center;\n    width: 100%;\n    \n}\n\n.player-title{\n    border: .5px solid black;\n    width: 90%;\n    height: 90%;\n    text-align: center;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.user-board,\n.ai-board{\n    border: 1px solid black;\n    height: 90%;\n    width: 90%;\n    display: grid;\n}\n\n.board{\n    display: grid;\n    grid-template-columns: repeat(16, 1fr);\n}\n\n.board-cell{\n    border: .1px solid black;\n    font-size: 1rem;\n}\n\n.empty{\n    background-color: aqua;\n}\n\n.occupied{\n    background-color: darkorange;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -547,12 +547,13 @@ const displayBoard = function displayOneBoard(owner) {
     const column = document.createElement("div");
     for (let j = 0; j <= 15; j++) {
       const cell = document.createElement("div");
-      cell.id = `${i},${j}`;
+      const coordinates = `_${i}_${j}`;
       column.appendChild(cell);
+      cell.classList.add(coordinates);
       cell.classList.add("board-cell");
       cell.classList.add(`${owner}`);
       cell.classList.add("empty");
-      cell.textContent = `${i},${j}`;
+      cell.textContent = `_${i}_${j}`;
     }
     board.appendChild(column);
   }
@@ -565,6 +566,484 @@ const displayBoards = function displayTheBoards() {
 
   const aiBoardContainer = document.querySelector(".ai-board-container");
   aiBoardContainer.appendChild(displayBoard("ai"));
+};
+
+
+
+
+/***/ }),
+
+/***/ "./src/game-loop.js":
+/*!**************************!*\
+  !*** ./src/game-loop.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "newGame": () => (/* binding */ newGame)
+/* harmony export */ });
+/* harmony import */ var _gameboard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gameboard */ "./src/gameboard.js");
+/* harmony import */ var _player__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./player */ "./src/player.js");
+/* harmony import */ var _populate_boards__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./populate-boards */ "./src/populate-boards.js");
+/* harmony import */ var _ship__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ship */ "./src/ship.js");
+
+
+
+
+
+
+
+
+// Eventually need to find a way to allow player to position ships
+
+const newGame = function createPlayersAndGameBoards() {
+  const user = (0,_player__WEBPACK_IMPORTED_MODULE_1__.playerFactory)("human");
+
+  const userBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.gameBoardFactory)();
+
+  userBoard.placeShip("dinghy", "vertical", [0, 0]);
+  userBoard.placeShip("dinghy2", "vertical", [1, 0]);
+  userBoard.placeShip("submarine", "vertical", [2, 0]);
+  userBoard.placeShip("battleship", "vertical", [3, 0]);
+  userBoard.placeShip("carrier", "vertical", [4, 0]);
+
+  (0,_populate_boards__WEBPACK_IMPORTED_MODULE_2__.populateBoards)("user", userBoard);
+
+  const ai = (0,_player__WEBPACK_IMPORTED_MODULE_1__.playerFactory)("ai");
+
+  const aiBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.gameBoardFactory)();
+
+  aiBoard.placeShip("dinghy", "vertical", [0, 0]);
+  aiBoard.placeShip("dinghy2", "vertical", [1, 0]);
+  aiBoard.placeShip("submarine", "vertical", [2, 0]);
+  aiBoard.placeShip("battleship", "vertical", [3, 0]);
+  aiBoard.placeShip("carrier", "vertical", [4, 0]);
+
+  (0,_populate_boards__WEBPACK_IMPORTED_MODULE_2__.populateBoards)("ai", aiBoard);
+
+  user.turn = true;
+};
+
+
+
+
+/***/ }),
+
+/***/ "./src/gameboard.js":
+/*!**************************!*\
+  !*** ./src/gameboard.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "gameBoardFactory": () => (/* binding */ gameBoardFactory)
+/* harmony export */ });
+/* harmony import */ var _ship__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ship */ "./src/ship.js");
+
+
+const gameBoardFactory = function makeGameBoard() {
+  const gameOver = false;
+
+  /**
+   * Keep track of which spaces are occupied, hit or miss
+   * Each space will be designated by an array with an x and y value
+   */
+  const occupiedSpaces = [];
+
+  // Record each ship's name with its respective coordinates
+
+  const shipLocations = {};
+
+  /**
+   * Record each ship object in its entirety
+   * They will always be stored in the same order, ascending in length
+   */
+
+  const shipObjects = [];
+
+  /**
+   * Keep track of which spaces have been attacked, regardless of hit or miss
+   */
+  const attackedSpaces = [];
+
+  // Whenever a ship is sunk, add to this array
+  const sunkShips = [];
+
+  const placeShip = function placeShipWithOrientation(
+    shipName,
+    orientation,
+    startingCoordinate
+  ) {
+    const currentShip = (0,_ship__WEBPACK_IMPORTED_MODULE_0__.shipFactory)(shipName);
+
+    const currentShipCoordinates = [];
+
+    const length = currentShip.shipLength;
+
+    // If ship is placed horizontally, it will occupy several spaces along x-axis, and vice versa
+    const axisIndex = orientation === "horizontal" ? 0 : 1;
+
+    // Use ship length and orientation to spaces that it occupies, add those to gameboard's record
+
+    const startingIndex = startingCoordinate[axisIndex];
+    const endingIndex = startingIndex + length - 1;
+
+    const potentialSpaces = [];
+
+    if (axisIndex === 0) {
+      for (let i = startingIndex; i <= endingIndex; i++) {
+        let nextCoordinate = [i, startingCoordinate[1]];
+        potentialSpaces.push(nextCoordinate);
+        currentShipCoordinates.push(nextCoordinate);
+      }
+    } else {
+      for (let i = startingIndex; i <= endingIndex; i++) {
+        let nextCoordinate = [startingCoordinate[0], i];
+        potentialSpaces.push(nextCoordinate);
+        currentShipCoordinates.push(nextCoordinate);
+      }
+    }
+
+    /**
+     *  Before updating gameboard's info, make sure new ship will not overlap others.
+     *  Calculate which spaces will be occupied, and make sure those spaces are not in the occupiedSpaces array
+     */
+
+    const conflict = checkAvailability(potentialSpaces);
+
+    if (conflict) {
+      return "Ships cannot overlap";
+    }
+
+    const outOfBounds = checkBounds(potentialSpaces);
+
+    if (outOfBounds) {
+      return "Out of bounds";
+    }
+
+    for (const space in potentialSpaces) {
+      this.occupiedSpaces.push(potentialSpaces[space]);
+    }
+    // Keep a record of entire ship object
+    this.shipObjects.push(currentShip);
+
+    this.shipLocations[currentShip.shipName] = currentShipCoordinates;
+
+    return `${shipName} was placed`;
+  };
+
+  const receiveAttack = function determineHitByCoordinates(coordinates) {
+    // Must check if spot has already been attacked
+
+    const hitConflict = checkOverlap(attackedSpaces, coordinates);
+
+    if (hitConflict) {
+      return "cannot attack same spot twice";
+    }
+
+    this.attackedSpaces.push(coordinates);
+
+    const isHit = checkOverlap(occupiedSpaces, coordinates);
+    if (isHit) {
+      const hitShip = checkHit(coordinates);
+
+      logHit(hitShip, coordinates);
+
+      const sunk = checkStatus(hitShip);
+      if (sunk) {
+        return `${hitShip} has been sunk`;
+      }
+      return `${hitShip} has been hit`;
+    } else {
+      return "miss";
+    }
+  };
+
+  const checkOverlap = function checkIfCoordinatesMatchArray(
+    array,
+    coordinates
+  ) {
+    return array.some((a) => coordinates.every((v, i) => v === a[i]));
+  };
+
+  // Takes a pair of coordinates and see which boat they belong to
+  const checkHit = function checkWhichBoatWasHit(coordinates) {
+    for (const ship in shipLocations) {
+      const shipSpaces = Object.values(shipLocations[ship]);
+      const hit = shipSpaces.some((a) =>
+        coordinates.every((v, i) => v === a[i])
+      );
+      if (hit) return ship;
+    }
+  };
+
+  // Take an array of spaces and make sure none of them are occupied
+  const checkAvailability = function checkIfSpacesAreOccupied(potentialSpaces) {
+    // Iterate through array of potential coords and see if any are occupied
+    for (const space in potentialSpaces) {
+      const conflict = occupiedSpaces.some((a) =>
+        potentialSpaces[space].every((v, i) => v === a[i])
+      );
+      if (conflict) {
+        return true;
+      }
+    }
+  };
+
+  // Take an array of spaces and make sure none are out of bounds
+  const checkBounds = function checkIfOutOfBounds(potentialSpaces) {
+    for (const space in potentialSpaces) {
+      let coord = potentialSpaces[space];
+      if (coord[0] > 10 || coord[1] > 10) {
+        return true;
+      }
+    }
+  };
+
+  const logHit = function recordHit(hitShip, coordinates) {
+    for (const ship in shipObjects) {
+      if (shipObjects[ship].shipName === hitShip) {
+        shipObjects[ship].hit(coordinates);
+      }
+    }
+  };
+
+  const checkStatus = function checkIfShipSank(hitShip) {
+    for (const ship in shipObjects) {
+      if (shipObjects[ship].shipName === hitShip) {
+        if (shipObjects[ship].isSunk) {
+          sunkShips.push(shipObjects[ship]);
+          return true;
+        }
+      }
+    }
+  };
+
+  const checkGame = function checkIfGameOver() {
+    if (this.sunkShips.length === 2) {
+      this.gameOver = !this.gameOver;
+    }
+
+    return this.gameOver;
+  };
+
+  const board = {
+    checkGame,
+    gameOver,
+    placeShip,
+    occupiedSpaces,
+    shipLocations,
+    shipObjects,
+    sunkShips,
+    receiveAttack,
+    attackedSpaces,
+    checkOverlap,
+  };
+
+  return board;
+};
+
+
+
+
+/***/ }),
+
+/***/ "./src/player.js":
+/*!***********************!*\
+  !*** ./src/player.js ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "playerFactory": () => (/* binding */ playerFactory)
+/* harmony export */ });
+/**
+ * playerFactory will take a name and give that player a gameboard
+ * with ships placed upon it.  Player can have an attack function
+ * that calls receiveAttack() on the enemy board.
+ *
+ * It will be necessary to keep track of the player's own ships, while also
+ * providing the human player with a display of the enemy's attacked coordinates
+ * The human player should be able to see which attacks failed or succeeded
+ */
+
+const playerFactory = function createPlayer(playerName) {
+  const name = playerName;
+
+  const turn = false;
+
+  const successfulAttacks = [];
+
+  const missedAttacks = [];
+
+  /**
+   * Attempts to take a gameBoard object (created with a factory function), and
+   * then call that object's receiveAttack method.  receiveAttack() is meant to modify the gameBoard object
+   * and return a string describing the modifications that took place
+   */
+
+  const attack = function attackEnemy(enemyBoard, coordinates) {
+    // If AI is attacking, generate random, available coordinates
+    if (coordinates === "auto") {
+      coordinates = generateCoordinates(enemyBoard);
+
+      if (coordinates === "No available spaces") {
+        return "No available spaces";
+      }
+    }
+
+    const result = enemyBoard.receiveAttack(coordinates);
+
+    logResult(result, coordinates);
+
+    return result;
+  };
+
+  const generateCoordinates = function generateXAndY(board) {
+    let target = "invalid";
+
+    while (target === "invalid") {
+      if (board.attackedSpaces.length > 256) {
+        return "No available spaces";
+      }
+      let possibleCoordinates = [];
+      let x = getRandomNumberBetween(0, 15);
+      let y = getRandomNumberBetween(0, 15);
+      possibleCoordinates.push(x);
+      possibleCoordinates.push(y);
+
+      let conflict = board.checkOverlap(
+        board.attackedSpaces,
+        possibleCoordinates
+      );
+
+      if (!conflict) {
+        target = "valid";
+        return possibleCoordinates;
+      }
+    }
+  };
+
+  const logResult = function pushCoordinatesToArray(result, coordinates) {
+    if (result.includes("hit") || result.includes("sunk")) {
+      successfulAttacks.push(coordinates);
+    } else if (result.includes("miss")) {
+      missedAttacks.push(coordinates);
+    }
+  };
+
+  const getSuccessfulAttacks = function showSuccess() {
+    return this.successfulAttacks;
+  };
+
+  const player = {
+    missedAttacks,
+    successfulAttacks,
+    attack,
+    getSuccessfulAttacks,
+    generateCoordinates,
+    turn,
+  };
+  return player;
+};
+
+
+
+function getRandomNumberBetween(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+
+/***/ }),
+
+/***/ "./src/populate-boards.js":
+/*!********************************!*\
+  !*** ./src/populate-boards.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "populateBoards": () => (/* binding */ populateBoards)
+/* harmony export */ });
+const populateBoards = function displayShips(name, board) {
+  for (const [key, value] of Object.entries(board.shipLocations)) {
+    for (const coordinate of value) {
+      console.log(coordinate);
+      const coordinateString = `_${coordinate[0]}_${coordinate[1]}`;
+      console.log(coordinateString);
+      const occupiedCells = document.querySelectorAll(`.${coordinateString}`);
+      occupiedCells.forEach((cell) => {
+        console.log(cell);
+        if (cell.classList.contains(name)) {
+          cell.classList.remove("empty");
+          cell.classList.add("occupied");
+        }
+      });
+    }
+  }
+};
+
+
+
+
+/***/ }),
+
+/***/ "./src/ship.js":
+/*!*********************!*\
+  !*** ./src/ship.js ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "shipFactory": () => (/* binding */ shipFactory)
+/* harmony export */ });
+const shipFactory = (name) => {
+  const shipLength = getShipLength(name);
+  const shipName = name;
+  const isSunk = false;
+
+  // An array of arrays, each containing a coordinate occupied by ship
+  const hitLocations = [];
+
+  const hit = function recordHitToHitLocations(location) {
+    this.hitLocations.push(location);
+    this.isSunk = checkIfSunk(this.hitLocations, this.shipLength);
+  };
+
+  return { shipLength, shipName, isSunk, hitLocations, hit };
+};
+
+const getShipLength = function measureShip(name) {
+  switch (name) {
+    case "dinghy":
+      return 2;
+      break;
+    case "dinghy2":
+      return 2;
+      break;
+    case "submarine":
+      return 3;
+      break;
+    case "battleship":
+      return 4;
+      break;
+    case "carrier":
+      return 5;
+      break;
+  }
+};
+
+const checkIfSunk = function reviewHitLocations(hits, shipLength) {
+  const numberOfHits = hits.length;
+  if (numberOfHits === shipLength) {
+    return true;
+  }
+  return false;
 };
 
 
@@ -654,6 +1133,9 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
 /* harmony import */ var _display_boards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./display-boards */ "./src/display-boards.js");
+/* harmony import */ var _game_loop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./game-loop */ "./src/game-loop.js");
+
+
 
 
 
@@ -664,10 +1146,11 @@ const boardCells = document.querySelectorAll(".board-cell");
 
 boardCells.forEach((cell) => {
   cell.addEventListener("click", () => {
-    console.log(cell.id);
-    console.log(cell.classList[1]);
+    console.log(cell.classList[0]);
   });
 });
+
+(0,_game_loop__WEBPACK_IMPORTED_MODULE_2__.newGame)();
 
 })();
 

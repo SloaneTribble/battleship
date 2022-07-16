@@ -5,12 +5,13 @@ const displayBoard = function displayOneBoard(owner) {
     const column = document.createElement("div");
     for (let j = 0; j <= 15; j++) {
       const cell = document.createElement("div");
-      cell.id = `${i},${j}`;
+      const coordinates = `_${i}_${j}`;
       column.appendChild(cell);
+      cell.classList.add(coordinates);
       cell.classList.add("board-cell");
       cell.classList.add(`${owner}`);
       cell.classList.add("empty");
-      cell.textContent = `${i},${j}`;
+      cell.textContent = `_${i}_${j}`;
     }
     board.appendChild(column);
   }
