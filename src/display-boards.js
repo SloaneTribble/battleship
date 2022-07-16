@@ -1,4 +1,4 @@
-const displayBoard = function displayOneBoard() {
+const displayBoard = function displayOneBoard(owner) {
   const board = document.createElement("div");
   board.classList.add("board");
   for (let i = 0; i <= 15; i++) {
@@ -8,6 +8,7 @@ const displayBoard = function displayOneBoard() {
       cell.id = `${i},${j}`;
       column.appendChild(cell);
       cell.classList.add("board-cell");
+      cell.classList.add(`${owner}`);
       cell.textContent = `${i},${j}`;
     }
     board.appendChild(column);
@@ -17,10 +18,10 @@ const displayBoard = function displayOneBoard() {
 
 const displayBoards = function displayTheBoards() {
   const userBoardContainer = document.querySelector(".user-board-container");
-  userBoardContainer.appendChild(displayBoard());
+  userBoardContainer.appendChild(displayBoard("user"));
 
   const aiBoardContainer = document.querySelector(".ai-board-container");
-  aiBoardContainer.appendChild(displayBoard());
+  aiBoardContainer.appendChild(displayBoard("ai"));
 };
 
 export { displayBoards };
