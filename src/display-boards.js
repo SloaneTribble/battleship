@@ -9,6 +9,7 @@ const displayBoard = function displayOneBoard(owner) {
       column.appendChild(cell);
       cell.classList.add("board-cell");
       cell.classList.add(`${owner}`);
+      cell.classList.add("empty");
       cell.textContent = `${i},${j}`;
     }
     board.appendChild(column);

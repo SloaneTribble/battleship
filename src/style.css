@@ -75,3 +75,7 @@ body{
     border: .1px solid black;
     font-size: 1rem;
 }
+
+.empty{
+    background-color: aqua;
+}
