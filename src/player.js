@@ -40,12 +40,10 @@ const playerFactory = function createPlayer(playerName) {
 
   const generateCoordinates = function generateXAndY(board) {
     let target = "invalid";
-    let attempts = 0;
 
     while (target === "invalid") {
-      attempts++;
 
-      if (attempts > 256){
+      if (board.attackedSpaces.length > 256){
         return "No available spaces";
       }
       let possibleCoordinates = [];

@@ -16,10 +16,10 @@ const shipFactory = (name) => {
 
 const getShipLength = function measureShip(name) {
   switch (name) {
-    case "dingy":
+    case "dinghy":
       return 2;
       break;
-    case "dingy2":
+    case "dinghy2":
       return 2;
       break;
     case "submarine":
