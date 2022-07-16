@@ -39,10 +39,42 @@ const newGame = function createPlayersAndGameBoards() {
 
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
-      console.log(cell.classList[0]);
-      console.log(cell.classList[2]);
+      console.log(cell.classList);
+      const owner = cell.classList[2];
+      console.log(`Owner: ${owner}`);
+      const ship = cell.classList[4];
+      console.log("Ship" + ship);
       const attack = aiBoard.receiveAttack(cell.classList[0]);
       console.log(attack);
+
+      switch (true) {
+        case attack === "miss":
+          cell.classList.remove("empty");
+          cell.classList.add("missed");
+
+          break;
+
+        case attack.includes("hit"):
+          cell.classList.remove("occupied");
+          cell.classList.add("hit");
+
+          break;
+
+        case attack.includes("sunk"):
+          boardCells.forEach((cell) => {
+            console.log(cell.classList[2]);
+            console.log(owner);
+            console.log(cell.classList[4]);
+            console.log(ship);
+            if (
+              (cell.classList[3] === ship || cell.classList[4] === ship) &&
+              cell.classList[2] === owner
+            ) {
+              cell.classList.remove("hit");
+              cell.classList.add("sunk");
+            }
+          });
+      }
     });
   });
 };

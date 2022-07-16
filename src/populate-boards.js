@@ -7,6 +7,8 @@ const populateBoards = function displayShips(name, board) {
         if (cell.classList.contains(name)) {
           cell.classList.remove("empty");
           cell.classList.add("occupied");
+          // Keep track of which cells' respective ships
+          cell.classList.add(key);
         }
       });
     }

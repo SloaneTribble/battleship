@@ -83,3 +83,15 @@ body{
 .occupied{
     background-color: darkorange;
 }
+
+.missed{
+    background-color: grey;
+}
+
+.hit{
+    background-color: red;
+}
+
+.sunk{
+    background-color: brown;
+}
