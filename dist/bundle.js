@@ -623,6 +623,17 @@ const newGame = function createPlayersAndGameBoards() {
   (0,_populate_boards__WEBPACK_IMPORTED_MODULE_2__.populateBoards)("ai", aiBoard);
 
   user.turn = true;
+
+  const boardCells = document.querySelectorAll(".board-cell");
+
+  boardCells.forEach((cell) => {
+    cell.addEventListener("click", () => {
+      console.log(cell.classList[0]);
+      console.log(cell.classList[2]);
+      const attack = aiBoard.receiveAttack(cell.classList[0]);
+      console.log(attack);
+    });
+  });
 };
 
 
@@ -736,6 +747,12 @@ const gameBoardFactory = function makeGameBoard() {
 
   const receiveAttack = function determineHitByCoordinates(coordinates) {
     // Must check if spot has already been attacked
+
+    if (typeof coordinates === "string") {
+      coordinates = coordinates.split("_");
+      coordinates.shift();
+      coordinates = [parseInt(coordinates[0]), parseInt(coordinates[1])];
+    }
 
     const hitConflict = checkOverlap(attackedSpaces, coordinates);
 
@@ -972,12 +989,9 @@ __webpack_require__.r(__webpack_exports__);
 const populateBoards = function displayShips(name, board) {
   for (const [key, value] of Object.entries(board.shipLocations)) {
     for (const coordinate of value) {
-      console.log(coordinate);
       const coordinateString = `_${coordinate[0]}_${coordinate[1]}`;
-      console.log(coordinateString);
       const occupiedCells = document.querySelectorAll(`.${coordinateString}`);
       occupiedCells.forEach((cell) => {
-        console.log(cell);
         if (cell.classList.contains(name)) {
           cell.classList.remove("empty");
           cell.classList.add("occupied");
@@ -1141,14 +1155,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 (0,_display_boards__WEBPACK_IMPORTED_MODULE_1__.displayBoards)();
-
-const boardCells = document.querySelectorAll(".board-cell");
-
-boardCells.forEach((cell) => {
-  cell.addEventListener("click", () => {
-    console.log(cell.classList[0]);
-  });
-});
 
 (0,_game_loop__WEBPACK_IMPORTED_MODULE_2__.newGame)();
 

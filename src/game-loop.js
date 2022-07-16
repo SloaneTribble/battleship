@@ -34,6 +34,17 @@ const newGame = function createPlayersAndGameBoards() {
   populateBoards("ai", aiBoard);
 
   user.turn = true;
+
+  const boardCells = document.querySelectorAll(".board-cell");
+
+  boardCells.forEach((cell) => {
+    cell.addEventListener("click", () => {
+      console.log(cell.classList[0]);
+      console.log(cell.classList[2]);
+      const attack = aiBoard.receiveAttack(cell.classList[0]);
+      console.log(attack);
+    });
+  });
 };
 
 export { newGame };

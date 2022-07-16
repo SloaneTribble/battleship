@@ -94,6 +94,12 @@ const gameBoardFactory = function makeGameBoard() {
   const receiveAttack = function determineHitByCoordinates(coordinates) {
     // Must check if spot has already been attacked
 
+    if (typeof coordinates === "string") {
+      coordinates = coordinates.split("_");
+      coordinates.shift();
+      coordinates = [parseInt(coordinates[0]), parseInt(coordinates[1])];
+    }
+
     const hitConflict = checkOverlap(attackedSpaces, coordinates);
 
     if (hitConflict) {
