@@ -109,8 +109,6 @@ const gameBoardFactory = function makeGameBoard() {
   };
 
   const receiveAttack = function determineHitByCoordinates(coordinates) {
-    // Must check if spot has already been attacked
-
     // Coordinates must be stored in board cells as _x_y to prevent CSS errors
 
     if (typeof coordinates === "string" && coordinates !== "auto") {
@@ -125,6 +123,7 @@ const gameBoardFactory = function makeGameBoard() {
       coordinates = formatted;
     }
 
+    // Must check if spot has already been attacked
     const hitConflict = checkOverlap(attackedSpaces, coordinates);
 
     if (hitConflict) {
