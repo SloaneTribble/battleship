@@ -12,10 +12,14 @@ test.only("Takes a board and identifies owner and activated spaces (attacked, mi
   userBoard.receiveAttack([0, 0]);
   userBoard.receiveAttack([0, 1]);
   userBoard.receiveAttack([3, 3]);
+  userBoard.receiveAttack([5, 5]);
 
   const updatedBoard = updateBoard(userBoard);
 
-  expect(updatedBoard.missedLocations).toStrictEqual([3, 3]);
+  expect(updatedBoard.missedLocations).toStrictEqual([
+    [3, 3],
+    [5, 5],
+  ]);
 
   expect(updatedBoard.hitLocations).toStrictEqual([
     [0, 0],

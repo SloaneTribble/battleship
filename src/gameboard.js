@@ -1,8 +1,6 @@
 import { shipFactory } from "./ship";
 
-const gameBoardFactory = function makeGameBoard(ownerName = "name") {
-  const owner = ownerName;
-
+const gameBoardFactory = function makeGameBoard() {
   const gameOver = false;
 
   /**
@@ -26,6 +24,8 @@ const gameBoardFactory = function makeGameBoard(ownerName = "name") {
    * Keep track of which spaces have been attacked, regardless of hit or miss
    */
   const attackedSpaces = [];
+
+  const missedLocations = [];
 
   // Whenever a ship is sunk, add to this array
   const sunkShips = [];
@@ -99,9 +99,15 @@ const gameBoardFactory = function makeGameBoard(ownerName = "name") {
     // Coordinates must be stored in board cells as _x_y to prevent CSS errors
 
     if (typeof coordinates === "string" && coordinates !== "auto") {
-      coordinates = coordinates.split("_");
-      coordinates.shift();
-      coordinates = [parseInt(coordinates[0]), parseInt(coordinates[1])];
+      let formatted = coordinates.split("_");
+      formatted.shift();
+      let x;
+      let y;
+      formatted[0] === "0" ? (x = 0) : (x = parseInt(formatted[0]));
+      formatted[1] === "0" ? (y = 0) : (y = parseInt(formatted[1]));
+
+      formatted = [x, y];
+      coordinates = formatted;
     }
 
     const hitConflict = checkOverlap(attackedSpaces, coordinates);
@@ -124,6 +130,7 @@ const gameBoardFactory = function makeGameBoard(ownerName = "name") {
       }
       return `${hitShip} has been hit`;
     } else {
+      missedLocations.push(coordinates);
       return "miss";
     }
   };
@@ -217,7 +224,6 @@ const gameBoardFactory = function makeGameBoard(ownerName = "name") {
   };
 
   const board = {
-    owner,
     checkGame,
     gameOver,
     placeShip,
@@ -227,6 +233,7 @@ const gameBoardFactory = function makeGameBoard(ownerName = "name") {
     sunkShips,
     receiveAttack,
     attackedSpaces,
+    missedLocations,
     checkOverlap,
     showHitLocations,
     showSunkLocations,

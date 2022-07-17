@@ -4,7 +4,7 @@ import { playerFactory } from "./player";
 
 import { populateBoards } from "./populate-boards";
 
-import { shipFactory } from "./ship";
+import { updateBoard } from "./update-board";
 
 // Eventually need to find a way to allow player to position ships
 
@@ -33,6 +33,8 @@ const newGame = function createPlayersAndGameBoards() {
 
   populateBoards("ai", aiBoard);
 
+  let updatedBoard = updateBoard(aiBoard, "ai");
+
   user.turn = true;
 
   const boardCells = document.querySelectorAll(".board-cell");
@@ -42,9 +44,11 @@ const newGame = function createPlayersAndGameBoards() {
       const coordinates = cell.classList[0];
       const owner = cell.classList[2];
       const ship = cell.classList[4];
-      let attack = user.attack(aiBoard, coordinates);
+      user.attack(aiBoard, coordinates);
+      updatedBoard = updateBoard(aiBoard, "ai");
 
-      console.log(aiBoard);
+      console.log(updatedBoard.hitLocations);
+      updatedBoard.displayHits();
     });
   });
 };
