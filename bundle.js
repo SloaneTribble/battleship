@@ -603,7 +603,7 @@ const newGame = function createPlayersAndGameBoards() {
   const userBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.gameBoardFactory)("user");
 
   userBoard.placeShip("dinghy", "vertical", [0, 0]);
-  userBoard.placeShip("dinghy2", "vertical", [1, 0]);
+  userBoard.placeShip("dinghy2", "horizontal", [8, 4]);
   userBoard.placeShip("submarine", "vertical", [2, 0]);
   userBoard.placeShip("battleship", "vertical", [3, 0]);
   userBoard.placeShip("carrier", "vertical", [4, 0]);
@@ -614,11 +614,20 @@ const newGame = function createPlayersAndGameBoards() {
 
   const aiBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.gameBoardFactory)("ai");
 
-  aiBoard.placeShip("dinghy", "vertical", [0, 0]);
-  aiBoard.placeShip("dinghy2", "vertical", [1, 0]);
-  aiBoard.placeShip("submarine", "vertical", [2, 0]);
-  aiBoard.placeShip("battleship", "vertical", [3, 0]);
-  aiBoard.placeShip("carrier", "vertical", [4, 0]);
+  let placed = aiBoard.autoPlace("dinghy");
+  console.log(placed);
+
+  placed = aiBoard.autoPlace("dinghy2");
+  console.log(placed);
+
+  placed = aiBoard.autoPlace("submarine");
+  console.log(placed);
+
+  placed = aiBoard.autoPlace("battleship");
+  console.log(placed);
+
+  placed = aiBoard.autoPlace("carrier");
+  console.log(placed);
 
   (0,_populate_boards__WEBPACK_IMPORTED_MODULE_2__.populateBoards)("ai", aiBoard);
 
@@ -676,6 +685,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "gameBoardFactory": () => (/* binding */ gameBoardFactory)
 /* harmony export */ });
 /* harmony import */ var _ship__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ship */ "./src/ship.js");
+/* harmony import */ var _player__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./player */ "./src/player.js");
+
+
 
 
 const gameBoardFactory = function makeGameBoard() {
@@ -761,14 +773,27 @@ const gameBoardFactory = function makeGameBoard() {
     }
 
     for (const space in potentialSpaces) {
-      this.occupiedSpaces.push(potentialSpaces[space]);
+      occupiedSpaces.push(potentialSpaces[space]);
     }
     // Keep a record of entire ship object
-    this.shipObjects.push(currentShip);
+    shipObjects.push(currentShip);
 
-    this.shipLocations[currentShip.shipName] = currentShipCoordinates;
+    shipLocations[currentShip.shipName] = currentShipCoordinates;
 
     return `${shipName} was placed`;
+  };
+
+  const autoPlace = function aiPlaceShip(name) {
+    const coinFlip = (0,_player__WEBPACK_IMPORTED_MODULE_1__.getRandomNumberBetween)(0, 1);
+    let alignment = "";
+    coinFlip === 0 ? (alignment = "vertical") : (alignment = "horizontal");
+
+    let placed = placeShip(name, alignment, generateCoordinates());
+
+    while (placed === "Out of bounds" || placed === "Ships cannot overlap") {
+      placed = placeShip(name, alignment, generateCoordinates());
+    }
+    return placed;
   };
 
   const receiveAttack = function determineHitByCoordinates(coordinates) {
@@ -901,10 +926,33 @@ const gameBoardFactory = function makeGameBoard() {
     return sunkLocations;
   };
 
+  const generateCoordinates = function generateXAndY() {
+    let target = "invalid";
+
+    while (target === "invalid") {
+      let possibleCoordinates = [];
+      let x = (0,_player__WEBPACK_IMPORTED_MODULE_1__.getRandomNumberBetween)(0, 15);
+      let y = (0,_player__WEBPACK_IMPORTED_MODULE_1__.getRandomNumberBetween)(0, 15);
+      possibleCoordinates.push(x);
+      possibleCoordinates.push(y);
+
+      let conflict = board.checkOverlap(
+        board.occupiedSpaces,
+        possibleCoordinates
+      );
+
+      if (!conflict) {
+        target = "valid";
+        return possibleCoordinates;
+      }
+    }
+  };
+
   const board = {
     checkGame,
     gameOver,
     placeShip,
+    autoPlace,
     occupiedSpaces,
     shipLocations,
     shipObjects,
@@ -933,6 +981,7 @@ const gameBoardFactory = function makeGameBoard() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getRandomNumberBetween": () => (/* binding */ getRandomNumberBetween),
 /* harmony export */   "playerFactory": () => (/* binding */ playerFactory)
 /* harmony export */ });
 /**
