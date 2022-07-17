@@ -1,5 +1,7 @@
 import { shipFactory } from "./ship";
 
+import { getRandomNumberBetween } from "./player";
+
 const gameBoardFactory = function makeGameBoard() {
   const gameOver = false;
 
@@ -83,14 +85,27 @@ const gameBoardFactory = function makeGameBoard() {
     }
 
     for (const space in potentialSpaces) {
-      this.occupiedSpaces.push(potentialSpaces[space]);
+      occupiedSpaces.push(potentialSpaces[space]);
     }
     // Keep a record of entire ship object
-    this.shipObjects.push(currentShip);
+    shipObjects.push(currentShip);
 
-    this.shipLocations[currentShip.shipName] = currentShipCoordinates;
+    shipLocations[currentShip.shipName] = currentShipCoordinates;
 
     return `${shipName} was placed`;
+  };
+
+  const autoPlace = function aiPlaceShip(name) {
+    const coinFlip = getRandomNumberBetween(0, 1);
+    let alignment = "";
+    coinFlip === 0 ? (alignment = "vertical") : (alignment = "horizontal");
+
+    let placed = placeShip(name, alignment, generateCoordinates());
+
+    while (placed === "Out of bounds" || placed === "Ships cannot overlap") {
+      placed = placeShip(name, alignment, generateCoordinates());
+    }
+    return placed;
   };
 
   const receiveAttack = function determineHitByCoordinates(coordinates) {
@@ -223,10 +238,33 @@ const gameBoardFactory = function makeGameBoard() {
     return sunkLocations;
   };
 
+  const generateCoordinates = function generateXAndY() {
+    let target = "invalid";
+
+    while (target === "invalid") {
+      let possibleCoordinates = [];
+      let x = getRandomNumberBetween(0, 15);
+      let y = getRandomNumberBetween(0, 15);
+      possibleCoordinates.push(x);
+      possibleCoordinates.push(y);
+
+      let conflict = board.checkOverlap(
+        board.occupiedSpaces,
+        possibleCoordinates
+      );
+
+      if (!conflict) {
+        target = "valid";
+        return possibleCoordinates;
+      }
+    }
+  };
+
   const board = {
     checkGame,
     gameOver,
     placeShip,
+    autoPlace,
     occupiedSpaces,
     shipLocations,
     shipObjects,

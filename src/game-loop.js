@@ -14,7 +14,7 @@ const newGame = function createPlayersAndGameBoards() {
   const userBoard = gameBoardFactory("user");
 
   userBoard.placeShip("dinghy", "vertical", [0, 0]);
-  userBoard.placeShip("dinghy2", "vertical", [1, 0]);
+  userBoard.placeShip("dinghy2", "horizontal", [8, 4]);
   userBoard.placeShip("submarine", "vertical", [2, 0]);
   userBoard.placeShip("battleship", "vertical", [3, 0]);
   userBoard.placeShip("carrier", "vertical", [4, 0]);
@@ -25,11 +25,20 @@ const newGame = function createPlayersAndGameBoards() {
 
   const aiBoard = gameBoardFactory("ai");
 
-  aiBoard.placeShip("dinghy", "vertical", [0, 0]);
-  aiBoard.placeShip("dinghy2", "vertical", [1, 0]);
-  aiBoard.placeShip("submarine", "vertical", [2, 0]);
-  aiBoard.placeShip("battleship", "vertical", [3, 0]);
-  aiBoard.placeShip("carrier", "vertical", [4, 0]);
+  let placed = aiBoard.autoPlace("dinghy");
+  console.log(placed);
+
+  placed = aiBoard.autoPlace("dinghy2");
+  console.log(placed);
+
+  placed = aiBoard.autoPlace("submarine");
+  console.log(placed);
+
+  placed = aiBoard.autoPlace("battleship");
+  console.log(placed);
+
+  placed = aiBoard.autoPlace("carrier");
+  console.log(placed);
 
   populateBoards("ai", aiBoard);
 
