@@ -196,7 +196,7 @@ const gameBoardFactory = function makeGameBoard() {
   };
 
   const checkGame = function checkIfGameOver() {
-    if (this.sunkShips.length === 2) {
+    if (this.sunkShips.length === 5) {
       this.gameOver = !this.gameOver;
     }
 

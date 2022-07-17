@@ -637,10 +637,25 @@ const newGame = function createPlayersAndGameBoards() {
 
       updatedBoard.displayUpdates();
 
+      let aiSunk = aiBoard.checkGame();
+      console.log(aiSunk);
+
+      if (aiSunk) {
+        console.log("You win");
+        return;
+      }
+
       let aiAttack = ai.attack(userBoard, "auto");
       console.log(aiAttack);
       updatedBoard = (0,_update_board__WEBPACK_IMPORTED_MODULE_3__.updateBoard)(userBoard, "user");
       updatedBoard.displayUpdates();
+
+      let userSunk = userBoard.checkGame();
+
+      if (userSunk) {
+        console.log("AI wins");
+        return;
+      }
     });
   });
 };
@@ -859,7 +874,7 @@ const gameBoardFactory = function makeGameBoard() {
   };
 
   const checkGame = function checkIfGameOver() {
-    if (this.sunkShips.length === 2) {
+    if (this.sunkShips.length === 5) {
       this.gameOver = !this.gameOver;
     }
 

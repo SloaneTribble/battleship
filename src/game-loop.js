@@ -48,10 +48,25 @@ const newGame = function createPlayersAndGameBoards() {
 
       updatedBoard.displayUpdates();
 
+      let aiSunk = aiBoard.checkGame();
+      console.log(aiSunk);
+
+      if (aiSunk) {
+        console.log("You win");
+        return;
+      }
+
       let aiAttack = ai.attack(userBoard, "auto");
       console.log(aiAttack);
       updatedBoard = updateBoard(userBoard, "user");
       updatedBoard.displayUpdates();
+
+      let userSunk = userBoard.checkGame();
+
+      if (userSunk) {
+        console.log("AI wins");
+        return;
+      }
     });
   });
 };
