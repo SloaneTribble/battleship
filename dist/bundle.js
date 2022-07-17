@@ -602,12 +602,6 @@ const newGame = function createPlayersAndGameBoards() {
 
   const userBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.gameBoardFactory)("user");
 
-  userBoard.placeShip("dinghy", "vertical", [0, 0]);
-  userBoard.placeShip("dinghy2", "horizontal", [8, 4]);
-  userBoard.placeShip("submarine", "vertical", [2, 0]);
-  userBoard.placeShip("battleship", "vertical", [3, 0]);
-  userBoard.placeShip("carrier", "vertical", [4, 0]);
-
   (0,_populate_boards__WEBPACK_IMPORTED_MODULE_2__.populateBoards)("user", userBoard);
 
   const ai = (0,_player__WEBPACK_IMPORTED_MODULE_1__.playerFactory)("ai");
@@ -642,8 +636,13 @@ const newGame = function createPlayersAndGameBoards() {
   const shipList = ["dinghy", "dinghy2", "submarine", "battleship", "carrier"];
   const lengthList = [2, 2, 3, 4, 5];
 
+  let setup = true;
+
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
+      if (setup === false) {
+        return;
+      }
       const coordinates = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.format)(cell.classList[0]);
       const activeShip = shipList[0];
 
@@ -655,11 +654,18 @@ const newGame = function createPlayersAndGameBoards() {
       (0,_populate_boards__WEBPACK_IMPORTED_MODULE_2__.populateBoards)("user", userBoard);
       shipList.shift();
       lengthList.shift();
+
+      if (shipList.length === 0) {
+        setup = false;
+      }
     });
   });
 
   boardCells.forEach((cell) => {
     cell.addEventListener("mouseenter", () => {
+      if (setup === false) {
+        return;
+      }
       // Convert cell to array form, expand, convert arrays back to cell form
 
       const activeCells = getCellPreview(cell, alignment, lengthList[0]);
@@ -674,6 +680,9 @@ const newGame = function createPlayersAndGameBoards() {
 
   boardCells.forEach((cell) => {
     cell.addEventListener("mouseleave", () => {
+      if (setup === false) {
+        return;
+      }
       // Convert cell to array form, expand, convert arrays back to cell form
       const activeCells = getCellPreview(cell, alignment, lengthList[0]);
       cell.classList.remove("hover");
@@ -687,6 +696,9 @@ const newGame = function createPlayersAndGameBoards() {
 
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
+      if (setup === true) {
+        return;
+      }
       const coordinates = cell.classList[0];
 
       user.attack(aiBoard, coordinates);
