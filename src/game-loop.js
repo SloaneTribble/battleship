@@ -1,4 +1,4 @@
-import { gameBoardFactory } from "./gameboard";
+import { gameBoardFactory, format } from "./gameboard";
 
 import { playerFactory } from "./player";
 
@@ -49,6 +49,52 @@ const newGame = function createPlayersAndGameBoards() {
   const boardCells = document.querySelectorAll(".board-cell");
 
   boardCells.forEach((cell) => {
+    cell.addEventListener("mouseenter", () => {
+      // Convert cell to array form, expand, convert arrays back to cell form
+      const activeCells = [];
+      const start = format(cell.classList[0]);
+      for (let i = start[0]; i < start[0] + 3; i++) {
+        let nextCell = [];
+        let x = i;
+        let y = start[1];
+        nextCell.push(x);
+        nextCell.push(y);
+        nextCell = deformat(nextCell);
+        activeCells.push(nextCell);
+      }
+      cell.classList.add("hover");
+
+      for (let cell of activeCells) {
+        let next = document.querySelector(`.${cell}`);
+        next.classList.add("hover");
+      }
+    });
+  });
+
+  boardCells.forEach((cell) => {
+    cell.addEventListener("mouseleave", () => {
+      // Convert cell to array form, expand, convert arrays back to cell form
+      const activeCells = [];
+      const start = format(cell.classList[0]);
+      for (let i = start[0]; i < start[0] + 3; i++) {
+        let nextCell = [];
+        let x = i;
+        let y = start[1];
+        nextCell.push(x);
+        nextCell.push(y);
+        nextCell = deformat(nextCell);
+        activeCells.push(nextCell);
+      }
+      cell.classList.remove("hover");
+
+      for (let cell of activeCells) {
+        let next = document.querySelector(`.${cell}`);
+        next.classList.remove("hover");
+      }
+    });
+  });
+
+  boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
       const coordinates = cell.classList[0];
 
@@ -81,3 +127,8 @@ const newGame = function createPlayersAndGameBoards() {
 };
 
 export { newGame };
+
+const deformat = function convertArrayToCellFormat(array) {
+  const cell = `_${array[0]}_${array[1]}`;
+  return cell;
+};

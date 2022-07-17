@@ -76,6 +76,10 @@ body{
     font-size: 1rem;
 }
 
+.board-cell:hover{
+    cursor: pointer;
+}
+
 .empty{
     background-color: aqua;
 }
@@ -98,4 +102,8 @@ body{
 
 .sunk{
     background-color: brown;
+}
+
+.hover{
+    background-color: beige;
 }

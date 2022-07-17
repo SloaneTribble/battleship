@@ -112,15 +112,7 @@ const gameBoardFactory = function makeGameBoard() {
     // Coordinates must be stored in board cells as _x_y to prevent CSS errors
 
     if (typeof coordinates === "string" && coordinates !== "auto") {
-      let formatted = coordinates.split("_");
-      formatted.shift();
-      let x;
-      let y;
-      formatted[0] === "0" ? (x = 0) : (x = parseInt(formatted[0]));
-      formatted[1] === "0" ? (y = 0) : (y = parseInt(formatted[1]));
-
-      formatted = [x, y];
-      coordinates = formatted;
+      coordinates = format(coordinates);
     }
 
     // Must check if spot has already been attacked
@@ -184,7 +176,7 @@ const gameBoardFactory = function makeGameBoard() {
   const checkBounds = function checkIfOutOfBounds(potentialSpaces) {
     for (const space in potentialSpaces) {
       let coord = potentialSpaces[space];
-      if (coord[0] > 10 || coord[1] > 10) {
+      if (coord[0] > 15 || coord[1] > 15) {
         return true;
       }
     }
@@ -279,4 +271,17 @@ const gameBoardFactory = function makeGameBoard() {
   return board;
 };
 
-export { gameBoardFactory };
+export { gameBoardFactory, format };
+
+const format = function convertCellToArray(coordinates) {
+  let formatted = coordinates.split("_");
+  formatted.shift();
+  let x;
+  let y;
+  formatted[0] === "0" ? (x = 0) : (x = parseInt(formatted[0]));
+  formatted[1] === "0" ? (y = 0) : (y = parseInt(formatted[1]));
+
+  formatted = [x, y];
+  coordinates = formatted;
+  return coordinates;
+};
