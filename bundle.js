@@ -600,7 +600,7 @@ __webpack_require__.r(__webpack_exports__);
 const newGame = function createPlayersAndGameBoards() {
   const user = (0,_player__WEBPACK_IMPORTED_MODULE_1__.playerFactory)("human");
 
-  const userBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.gameBoardFactory)();
+  const userBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.gameBoardFactory)("user");
 
   userBoard.placeShip("dinghy", "vertical", [0, 0]);
   userBoard.placeShip("dinghy2", "vertical", [1, 0]);
@@ -612,7 +612,7 @@ const newGame = function createPlayersAndGameBoards() {
 
   const ai = (0,_player__WEBPACK_IMPORTED_MODULE_1__.playerFactory)("ai");
 
-  const aiBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.gameBoardFactory)();
+  const aiBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.gameBoardFactory)("ai");
 
   aiBoard.placeShip("dinghy", "vertical", [0, 0]);
   aiBoard.placeShip("dinghy2", "vertical", [1, 0]);
@@ -628,42 +628,12 @@ const newGame = function createPlayersAndGameBoards() {
 
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
-      console.log(cell.classList);
+      const coordinates = cell.classList[0];
       const owner = cell.classList[2];
-      console.log(`Owner: ${owner}`);
       const ship = cell.classList[4];
-      console.log("Ship" + ship);
-      const attack = aiBoard.receiveAttack(cell.classList[0]);
-      console.log(attack);
+      let attack = user.attack(aiBoard, coordinates);
 
-      switch (true) {
-        case attack === "miss":
-          cell.classList.remove("empty");
-          cell.classList.add("missed");
-
-          break;
-
-        case attack.includes("hit"):
-          cell.classList.remove("occupied");
-          cell.classList.add("hit");
-
-          break;
-
-        case attack.includes("sunk"):
-          boardCells.forEach((cell) => {
-            console.log(cell.classList[2]);
-            console.log(owner);
-            console.log(cell.classList[4]);
-            console.log(ship);
-            if (
-              (cell.classList[3] === ship || cell.classList[4] === ship) &&
-              cell.classList[2] === owner
-            ) {
-              cell.classList.remove("hit");
-              cell.classList.add("sunk");
-            }
-          });
-      }
+      console.log(aiBoard);
     });
   });
 };
@@ -686,7 +656,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ship__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ship */ "./src/ship.js");
 
 
-const gameBoardFactory = function makeGameBoard() {
+const gameBoardFactory = function makeGameBoard(ownerName = "name") {
+  const owner = ownerName;
+
   const gameOver = false;
 
   /**
@@ -782,7 +754,7 @@ const gameBoardFactory = function makeGameBoard() {
 
     // Coordinates must be stored in board cells as _x_y to prevent CSS errors
 
-    if (typeof coordinates === "string") {
+    if (typeof coordinates === "string" && coordinates !== "auto") {
       coordinates = coordinates.split("_");
       coordinates.shift();
       coordinates = [parseInt(coordinates[0]), parseInt(coordinates[1])];
@@ -880,6 +852,26 @@ const gameBoardFactory = function makeGameBoard() {
     return this.gameOver;
   };
 
+  const showHitLocations = function iterateThroughShipObjects() {
+    const hits = [];
+    for (let ship of shipObjects) {
+      for (let hit of ship.hitLocations) {
+        hits.push(hit);
+      }
+    }
+    return hits;
+  };
+
+  const showSunkLocations = function iterateThroughSunkShips() {
+    const sunkLocations = [];
+    for (let ship of sunkShips) {
+      for (let hit of ship.hitLocations) {
+        sunkLocations.push(hit);
+      }
+    }
+    return sunkLocations;
+  };
+
   const board = {
     checkGame,
     gameOver,
@@ -891,6 +883,8 @@ const gameBoardFactory = function makeGameBoard() {
     receiveAttack,
     attackedSpaces,
     checkOverlap,
+    showHitLocations,
+    showSunkLocations,
   };
 
   return board;
