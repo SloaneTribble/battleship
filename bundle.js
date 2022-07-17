@@ -586,7 +586,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _gameboard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gameboard */ "./src/gameboard.js");
 /* harmony import */ var _player__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./player */ "./src/player.js");
 /* harmony import */ var _populate_boards__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./populate-boards */ "./src/populate-boards.js");
-/* harmony import */ var _ship__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ship */ "./src/ship.js");
+/* harmony import */ var _update_board__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./update-board */ "./src/update-board.js");
 
 
 
@@ -622,6 +622,8 @@ const newGame = function createPlayersAndGameBoards() {
 
   (0,_populate_boards__WEBPACK_IMPORTED_MODULE_2__.populateBoards)("ai", aiBoard);
 
+  let updatedBoard = (0,_update_board__WEBPACK_IMPORTED_MODULE_3__.updateBoard)(aiBoard, "ai");
+
   user.turn = true;
 
   const boardCells = document.querySelectorAll(".board-cell");
@@ -631,9 +633,11 @@ const newGame = function createPlayersAndGameBoards() {
       const coordinates = cell.classList[0];
       const owner = cell.classList[2];
       const ship = cell.classList[4];
-      let attack = user.attack(aiBoard, coordinates);
+      user.attack(aiBoard, coordinates);
+      updatedBoard = (0,_update_board__WEBPACK_IMPORTED_MODULE_3__.updateBoard)(aiBoard, "ai");
 
-      console.log(aiBoard);
+      console.log(updatedBoard.hitLocations);
+      updatedBoard.displayHits();
     });
   });
 };
@@ -656,9 +660,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ship__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ship */ "./src/ship.js");
 
 
-const gameBoardFactory = function makeGameBoard(ownerName = "name") {
-  const owner = ownerName;
-
+const gameBoardFactory = function makeGameBoard() {
   const gameOver = false;
 
   /**
@@ -682,6 +684,8 @@ const gameBoardFactory = function makeGameBoard(ownerName = "name") {
    * Keep track of which spaces have been attacked, regardless of hit or miss
    */
   const attackedSpaces = [];
+
+  const missedLocations = [];
 
   // Whenever a ship is sunk, add to this array
   const sunkShips = [];
@@ -755,9 +759,15 @@ const gameBoardFactory = function makeGameBoard(ownerName = "name") {
     // Coordinates must be stored in board cells as _x_y to prevent CSS errors
 
     if (typeof coordinates === "string" && coordinates !== "auto") {
-      coordinates = coordinates.split("_");
-      coordinates.shift();
-      coordinates = [parseInt(coordinates[0]), parseInt(coordinates[1])];
+      let formatted = coordinates.split("_");
+      formatted.shift();
+      let x;
+      let y;
+      formatted[0] === "0" ? (x = 0) : (x = parseInt(formatted[0]));
+      formatted[1] === "0" ? (y = 0) : (y = parseInt(formatted[1]));
+
+      formatted = [x, y];
+      coordinates = formatted;
     }
 
     const hitConflict = checkOverlap(attackedSpaces, coordinates);
@@ -780,6 +790,7 @@ const gameBoardFactory = function makeGameBoard(ownerName = "name") {
       }
       return `${hitShip} has been hit`;
     } else {
+      missedLocations.push(coordinates);
       return "miss";
     }
   };
@@ -873,7 +884,6 @@ const gameBoardFactory = function makeGameBoard(ownerName = "name") {
   };
 
   const board = {
-    owner,
     checkGame,
     gameOver,
     placeShip,
@@ -883,6 +893,7 @@ const gameBoardFactory = function makeGameBoard(ownerName = "name") {
     sunkShips,
     receiveAttack,
     attackedSpaces,
+    missedLocations,
     checkOverlap,
     showHitLocations,
     showSunkLocations,
@@ -1089,6 +1100,57 @@ const checkIfSunk = function reviewHitLocations(hits, shipLength) {
     return true;
   }
   return false;
+};
+
+
+
+
+/***/ }),
+
+/***/ "./src/update-board.js":
+/*!*****************************!*\
+  !*** ./src/update-board.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "updateBoard": () => (/* binding */ updateBoard)
+/* harmony export */ });
+// Read a player's board and use it to update display
+
+const updateBoard = function readBoardAndUpdateDisplay(board, name) {
+  const owner = name;
+
+  const hitLocations = board.showHitLocations();
+
+  const showHits = function experimental() {
+    return this.hitLocations;
+  };
+
+  const missedLocations = board.missedLocations;
+
+  const sunkLocations = board.showSunkLocations();
+
+  const displayHits = function iterateThroughHitsAndUpdateDOM() {
+    for (let hit of this.hitLocations) {
+      const cells = document.querySelectorAll(`._${hit[0]}_${hit[1]}`);
+      cells.forEach((cell) => {
+        if (cell.classList.contains(owner)) {
+          cell.classList.remove("occupied");
+          cell.classList.add("hit");
+        }
+      });
+    }
+  };
+  return {
+    owner,
+    hitLocations,
+    displayHits,
+    showHits,
+    missedLocations,
+    sunkLocations,
+  };
 };
 
 
