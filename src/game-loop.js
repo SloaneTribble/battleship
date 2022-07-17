@@ -42,13 +42,16 @@ const newGame = function createPlayersAndGameBoards() {
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
       const coordinates = cell.classList[0];
-      const owner = cell.classList[2];
-      const ship = cell.classList[4];
+
       user.attack(aiBoard, coordinates);
       updatedBoard = updateBoard(aiBoard, "ai");
 
-      console.log(updatedBoard.hitLocations);
-      updatedBoard.displayHits();
+      updatedBoard.displayUpdates();
+
+      let aiAttack = ai.attack(userBoard, "auto");
+      console.log(aiAttack);
+      updatedBoard = updateBoard(userBoard, "user");
+      updatedBoard.displayUpdates();
     });
   });
 };
