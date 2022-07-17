@@ -217,6 +217,7 @@ const gameBoardFactory = function makeGameBoard(ownerName = "name") {
   };
 
   const board = {
+    owner,
     checkGame,
     gameOver,
     placeShip,
