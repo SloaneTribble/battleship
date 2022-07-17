@@ -635,22 +635,23 @@ const newGame = function createPlayersAndGameBoards() {
 
   user.turn = true;
 
+  let alignment = "vertical";
+
   const boardCells = document.querySelectorAll(".board-cell");
+
+  boardCells.forEach((cell) => {
+    cell.addEventListener("click", () => {
+      const coordinates = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.format)(cell.classList[0]);
+      let placed = userBoard.placeShip("dinghy", alignment, coordinates);
+      console.log(placed);
+      (0,_populate_boards__WEBPACK_IMPORTED_MODULE_2__.populateBoards)("user", userBoard);
+    });
+  });
 
   boardCells.forEach((cell) => {
     cell.addEventListener("mouseenter", () => {
       // Convert cell to array form, expand, convert arrays back to cell form
-      const activeCells = [];
-      const start = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.format)(cell.classList[0]);
-      for (let i = start[0]; i < start[0] + 3; i++) {
-        let nextCell = [];
-        let x = i;
-        let y = start[1];
-        nextCell.push(x);
-        nextCell.push(y);
-        nextCell = deformat(nextCell);
-        activeCells.push(nextCell);
-      }
+      const activeCells = getCellPreview(cell, alignment);
       cell.classList.add("hover");
 
       for (let cell of activeCells) {
@@ -663,17 +664,7 @@ const newGame = function createPlayersAndGameBoards() {
   boardCells.forEach((cell) => {
     cell.addEventListener("mouseleave", () => {
       // Convert cell to array form, expand, convert arrays back to cell form
-      const activeCells = [];
-      const start = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.format)(cell.classList[0]);
-      for (let i = start[0]; i < start[0] + 3; i++) {
-        let nextCell = [];
-        let x = i;
-        let y = start[1];
-        nextCell.push(x);
-        nextCell.push(y);
-        nextCell = deformat(nextCell);
-        activeCells.push(nextCell);
-      }
+      const activeCells = getCellPreview(cell, alignment);
       cell.classList.remove("hover");
 
       for (let cell of activeCells) {
@@ -720,6 +711,35 @@ const newGame = function createPlayersAndGameBoards() {
 const deformat = function convertArrayToCellFormat(array) {
   const cell = `_${array[0]}_${array[1]}`;
   return cell;
+};
+
+const getCellPreview = function getPotentialCellCoords(cell, alignment) {
+  const activeCells = [];
+  if (alignment === "horizontal") {
+    const start = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.format)(cell.classList[0]);
+    for (let i = start[0]; i < start[0] + 3; i++) {
+      let nextCell = [];
+      let x = i;
+      let y = start[1];
+      nextCell.push(x);
+      nextCell.push(y);
+      nextCell = deformat(nextCell);
+      activeCells.push(nextCell);
+    }
+  } else if (alignment === "vertical") {
+    const start = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.format)(cell.classList[0]);
+    for (let i = start[1]; i < start[1] + 3; i++) {
+      let nextCell = [];
+      let x = start[0];
+      let y = i;
+      nextCell.push(x);
+      nextCell.push(y);
+      nextCell = deformat(nextCell);
+      activeCells.push(nextCell);
+    }
+
+    return activeCells;
+  }
 };
 
 
