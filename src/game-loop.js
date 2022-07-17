@@ -50,19 +50,30 @@ const newGame = function createPlayersAndGameBoards() {
 
   const boardCells = document.querySelectorAll(".board-cell");
 
+  const shipList = ["dinghy", "dinghy2", "submarine", "battleship", "carrier"];
+  const lengthList = [2, 2, 3, 4, 5];
+
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
       const coordinates = format(cell.classList[0]);
-      let placed = userBoard.placeShip("dinghy", alignment, coordinates);
+      const activeShip = shipList[0];
+
+      let placed = userBoard.placeShip(activeShip, alignment, coordinates);
+      if (placed === "Out of bounds" || placed === "Ships cannot overlap") {
+        return;
+      }
       console.log(placed);
       populateBoards("user", userBoard);
+      shipList.shift();
+      lengthList.shift();
     });
   });
 
   boardCells.forEach((cell) => {
     cell.addEventListener("mouseenter", () => {
       // Convert cell to array form, expand, convert arrays back to cell form
-      const activeCells = getCellPreview(cell, alignment);
+
+      const activeCells = getCellPreview(cell, alignment, lengthList[0]);
       cell.classList.add("hover");
 
       for (let cell of activeCells) {
@@ -75,7 +86,7 @@ const newGame = function createPlayersAndGameBoards() {
   boardCells.forEach((cell) => {
     cell.addEventListener("mouseleave", () => {
       // Convert cell to array form, expand, convert arrays back to cell form
-      const activeCells = getCellPreview(cell, alignment);
+      const activeCells = getCellPreview(cell, alignment, lengthList[0]);
       cell.classList.remove("hover");
 
       for (let cell of activeCells) {
@@ -124,11 +135,15 @@ const deformat = function convertArrayToCellFormat(array) {
   return cell;
 };
 
-const getCellPreview = function getPotentialCellCoords(cell, alignment) {
+const getCellPreview = function getPotentialCellCoords(
+  cell,
+  alignment,
+  length
+) {
   const activeCells = [];
   if (alignment === "horizontal") {
     const start = format(cell.classList[0]);
-    for (let i = start[0]; i < start[0] + 3; i++) {
+    for (let i = start[0]; i < start[0] + length; i++) {
       let nextCell = [];
       let x = i;
       let y = start[1];
@@ -139,7 +154,7 @@ const getCellPreview = function getPotentialCellCoords(cell, alignment) {
     }
   } else if (alignment === "vertical") {
     const start = format(cell.classList[0]);
-    for (let i = start[1]; i < start[1] + 3; i++) {
+    for (let i = start[1]; i < start[1] + length; i++) {
       let nextCell = [];
       let x = start[0];
       let y = i;
