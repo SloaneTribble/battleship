@@ -20,19 +20,14 @@ const newGame = function createPlayersAndGameBoards() {
   const aiBoard = gameBoardFactory("ai");
 
   let placed = aiBoard.autoPlace("dinghy");
-  console.log(placed);
 
   placed = aiBoard.autoPlace("dinghy2");
-  console.log(placed);
 
   placed = aiBoard.autoPlace("submarine");
-  console.log(placed);
 
   placed = aiBoard.autoPlace("battleship");
-  console.log(placed);
 
   placed = aiBoard.autoPlace("carrier");
-  console.log(placed);
 
   populateBoards("ai", aiBoard);
 
@@ -45,9 +40,11 @@ const newGame = function createPlayersAndGameBoards() {
   const boardCells = document.querySelectorAll(".board-cell");
 
   const shipList = ["dinghy", "dinghy2", "submarine", "battleship", "carrier"];
-  const lengthList = [2, 2, 3, 4, 5];
+  const lengthList = [2, 2, 3, 4, 5, 5];
 
   let setup = true;
+
+  let battle = false;
 
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
@@ -59,6 +56,7 @@ const newGame = function createPlayersAndGameBoards() {
 
       let placed = userBoard.placeShip(activeShip, alignment, coordinates);
       if (placed === "Out of bounds" || placed === "Ships cannot overlap") {
+        console.log(placed);
         return;
       }
       console.log(placed);
@@ -110,6 +108,13 @@ const newGame = function createPlayersAndGameBoards() {
       if (setup === true) {
         return;
       }
+
+      if (setup === false && battle === false) {
+        battle = true;
+        console.log("Let the battle begin!");
+        return;
+      }
+
       const coordinates = cell.classList[0];
 
       user.attack(aiBoard, coordinates);
