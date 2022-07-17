@@ -21,7 +21,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "html,\nbody{\n    box-sizing: border-box;\n    position: relative;\n    min-width: 800px;\n    max-width: 100vw;\n    margin: 0;\n    padding: 0; \n}\n\nbody{\n    min-height: 100vh;\n    display: flex;\n    flex: 1;\n}\n*,\n*:before,\n*:after{\n    box-sizing: inherit;\n    max-width: 100vw;\n    margin: 0;\n}\n\n.page-container{\n    min-width: 800px;\n    width: 100%;\n    display: grid;\n    grid-template-rows: .8fr 80% 1fr;\n    grid-template-columns: 100%;\n}\n\n.game-container{\n    min-width: 800px;\n    border: 2px solid black;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    grid-column: 1/ 4;\n}\n\n.user-container,\n.ai-container{\n    border: 1px solid black;\n    display: grid;\n    grid-template-rows: 1fr 10fr 1fr;\n    justify-items: center;\n    align-items: center;\n    width: 100%;\n    \n}\n\n.player-title{\n    border: .5px solid black;\n    width: 90%;\n    height: 90%;\n    text-align: center;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.user-board,\n.ai-board{\n    border: 1px solid black;\n    height: 90%;\n    width: 90%;\n    display: grid;\n}\n\n.board{\n    display: grid;\n    grid-template-columns: repeat(16, 1fr);\n}\n\n.board-cell{\n    border: .1px solid black;\n    font-size: 1rem;\n}\n\n.empty{\n    background-color: aqua;\n}\n\n.occupied{\n    background-color: darkorange;\n}\n\n.ai.occupied{\n    background-color: blue;\n}\n\n.missed{\n    background-color: grey;\n}\n\n.hit{\n    background-color: red;\n}\n\n.sunk{\n    background-color: brown;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;;IAEI,sBAAsB;IACtB,kBAAkB;IAClB,gBAAgB;IAChB,gBAAgB;IAChB,SAAS;IACT,UAAU;AACd;;AAEA;IACI,iBAAiB;IACjB,aAAa;IACb,OAAO;AACX;AACA;;;IAGI,mBAAmB;IACnB,gBAAgB;IAChB,SAAS;AACb;;AAEA;IACI,gBAAgB;IAChB,WAAW;IACX,aAAa;IACb,gCAAgC;IAChC,2BAA2B;AAC/B;;AAEA;IACI,gBAAgB;IAChB,uBAAuB;IACvB,aAAa;IACb,8BAA8B;IAC9B,iBAAiB;AACrB;;AAEA;;IAEI,uBAAuB;IACvB,aAAa;IACb,gCAAgC;IAChC,qBAAqB;IACrB,mBAAmB;IACnB,WAAW;;AAEf;;AAEA;IACI,wBAAwB;IACxB,UAAU;IACV,WAAW;IACX,kBAAkB;IAClB,aAAa;IACb,uBAAuB;IACvB,mBAAmB;AACvB;;AAEA;;IAEI,uBAAuB;IACvB,WAAW;IACX,UAAU;IACV,aAAa;AACjB;;AAEA;IACI,aAAa;IACb,sCAAsC;AAC1C;;AAEA;IACI,wBAAwB;IACxB,eAAe;AACnB;;AAEA;IACI,sBAAsB;AAC1B;;AAEA;IACI,4BAA4B;AAChC;;AAEA;IACI,sBAAsB;AAC1B;;AAEA;IACI,sBAAsB;AAC1B;;AAEA;IACI,qBAAqB;AACzB;;AAEA;IACI,uBAAuB;AAC3B","sourcesContent":["html,\nbody{\n    box-sizing: border-box;\n    position: relative;\n    min-width: 800px;\n    max-width: 100vw;\n    margin: 0;\n    padding: 0; \n}\n\nbody{\n    min-height: 100vh;\n    display: flex;\n    flex: 1;\n}\n*,\n*:before,\n*:after{\n    box-sizing: inherit;\n    max-width: 100vw;\n    margin: 0;\n}\n\n.page-container{\n    min-width: 800px;\n    width: 100%;\n    display: grid;\n    grid-template-rows: .8fr 80% 1fr;\n    grid-template-columns: 100%;\n}\n\n.game-container{\n    min-width: 800px;\n    border: 2px solid black;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    grid-column: 1/ 4;\n}\n\n.user-container,\n.ai-container{\n    border: 1px solid black;\n    display: grid;\n    grid-template-rows: 1fr 10fr 1fr;\n    justify-items: center;\n    align-items: center;\n    width: 100%;\n    \n}\n\n.player-title{\n    border: .5px solid black;\n    width: 90%;\n    height: 90%;\n    text-align: center;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.user-board,\n.ai-board{\n    border: 1px solid black;\n    height: 90%;\n    width: 90%;\n    display: grid;\n}\n\n.board{\n    display: grid;\n    grid-template-columns: repeat(16, 1fr);\n}\n\n.board-cell{\n    border: .1px solid black;\n    font-size: 1rem;\n}\n\n.empty{\n    background-color: aqua;\n}\n\n.occupied{\n    background-color: darkorange;\n}\n\n.ai.occupied{\n    background-color: blue;\n}\n\n.missed{\n    background-color: grey;\n}\n\n.hit{\n    background-color: red;\n}\n\n.sunk{\n    background-color: brown;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "html,\nbody{\n    box-sizing: border-box;\n    position: relative;\n    min-width: 800px;\n    max-width: 100vw;\n    margin: 0;\n    padding: 0; \n}\n\nbody{\n    min-height: 100vh;\n    display: flex;\n    flex: 1;\n}\n*,\n*:before,\n*:after{\n    box-sizing: inherit;\n    max-width: 100vw;\n    margin: 0;\n}\n\n.page-container{\n    min-width: 800px;\n    width: 100%;\n    display: grid;\n    grid-template-rows: .8fr 80% 1fr;\n    grid-template-columns: 100%;\n}\n\n.game-container{\n    min-width: 800px;\n    border: 2px solid black;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    grid-column: 1/ 4;\n}\n\n.user-container,\n.ai-container{\n    border: 1px solid black;\n    display: grid;\n    grid-template-rows: 1fr 10fr 1fr;\n    justify-items: center;\n    align-items: center;\n    width: 100%;\n    \n}\n\n.player-title{\n    border: .5px solid black;\n    width: 90%;\n    height: 90%;\n    text-align: center;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.user-board,\n.ai-board{\n    border: 1px solid black;\n    height: 90%;\n    width: 90%;\n    display: grid;\n}\n\n.board{\n    display: grid;\n    grid-template-columns: repeat(16, 1fr);\n}\n\n.board-cell{\n    border: .1px solid black;\n    font-size: 1rem;\n}\n\n.board-cell:hover{\n    cursor: pointer;\n}\n\n.empty{\n    background-color: aqua;\n}\n\n.occupied{\n    background-color: darkorange;\n}\n\n.ai.occupied{\n    background-color: blue;\n}\n\n.missed{\n    background-color: grey;\n}\n\n.hit{\n    background-color: red;\n}\n\n.sunk{\n    background-color: brown;\n}\n\n.hover{\n    background-color: beige;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;;IAEI,sBAAsB;IACtB,kBAAkB;IAClB,gBAAgB;IAChB,gBAAgB;IAChB,SAAS;IACT,UAAU;AACd;;AAEA;IACI,iBAAiB;IACjB,aAAa;IACb,OAAO;AACX;AACA;;;IAGI,mBAAmB;IACnB,gBAAgB;IAChB,SAAS;AACb;;AAEA;IACI,gBAAgB;IAChB,WAAW;IACX,aAAa;IACb,gCAAgC;IAChC,2BAA2B;AAC/B;;AAEA;IACI,gBAAgB;IAChB,uBAAuB;IACvB,aAAa;IACb,8BAA8B;IAC9B,iBAAiB;AACrB;;AAEA;;IAEI,uBAAuB;IACvB,aAAa;IACb,gCAAgC;IAChC,qBAAqB;IACrB,mBAAmB;IACnB,WAAW;;AAEf;;AAEA;IACI,wBAAwB;IACxB,UAAU;IACV,WAAW;IACX,kBAAkB;IAClB,aAAa;IACb,uBAAuB;IACvB,mBAAmB;AACvB;;AAEA;;IAEI,uBAAuB;IACvB,WAAW;IACX,UAAU;IACV,aAAa;AACjB;;AAEA;IACI,aAAa;IACb,sCAAsC;AAC1C;;AAEA;IACI,wBAAwB;IACxB,eAAe;AACnB;;AAEA;IACI,eAAe;AACnB;;AAEA;IACI,sBAAsB;AAC1B;;AAEA;IACI,4BAA4B;AAChC;;AAEA;IACI,sBAAsB;AAC1B;;AAEA;IACI,sBAAsB;AAC1B;;AAEA;IACI,qBAAqB;AACzB;;AAEA;IACI,uBAAuB;AAC3B;;AAEA;IACI,uBAAuB;AAC3B","sourcesContent":["html,\nbody{\n    box-sizing: border-box;\n    position: relative;\n    min-width: 800px;\n    max-width: 100vw;\n    margin: 0;\n    padding: 0; \n}\n\nbody{\n    min-height: 100vh;\n    display: flex;\n    flex: 1;\n}\n*,\n*:before,\n*:after{\n    box-sizing: inherit;\n    max-width: 100vw;\n    margin: 0;\n}\n\n.page-container{\n    min-width: 800px;\n    width: 100%;\n    display: grid;\n    grid-template-rows: .8fr 80% 1fr;\n    grid-template-columns: 100%;\n}\n\n.game-container{\n    min-width: 800px;\n    border: 2px solid black;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    grid-column: 1/ 4;\n}\n\n.user-container,\n.ai-container{\n    border: 1px solid black;\n    display: grid;\n    grid-template-rows: 1fr 10fr 1fr;\n    justify-items: center;\n    align-items: center;\n    width: 100%;\n    \n}\n\n.player-title{\n    border: .5px solid black;\n    width: 90%;\n    height: 90%;\n    text-align: center;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.user-board,\n.ai-board{\n    border: 1px solid black;\n    height: 90%;\n    width: 90%;\n    display: grid;\n}\n\n.board{\n    display: grid;\n    grid-template-columns: repeat(16, 1fr);\n}\n\n.board-cell{\n    border: .1px solid black;\n    font-size: 1rem;\n}\n\n.board-cell:hover{\n    cursor: pointer;\n}\n\n.empty{\n    background-color: aqua;\n}\n\n.occupied{\n    background-color: darkorange;\n}\n\n.ai.occupied{\n    background-color: blue;\n}\n\n.missed{\n    background-color: grey;\n}\n\n.hit{\n    background-color: red;\n}\n\n.sunk{\n    background-color: brown;\n}\n\n.hover{\n    background-color: beige;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -638,6 +638,52 @@ const newGame = function createPlayersAndGameBoards() {
   const boardCells = document.querySelectorAll(".board-cell");
 
   boardCells.forEach((cell) => {
+    cell.addEventListener("mouseenter", () => {
+      // Convert cell to array form, expand, convert arrays back to cell form
+      const activeCells = [];
+      const start = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.format)(cell.classList[0]);
+      for (let i = start[0]; i < start[0] + 3; i++) {
+        let nextCell = [];
+        let x = i;
+        let y = start[1];
+        nextCell.push(x);
+        nextCell.push(y);
+        nextCell = deformat(nextCell);
+        activeCells.push(nextCell);
+      }
+      cell.classList.add("hover");
+
+      for (let cell of activeCells) {
+        let next = document.querySelector(`.${cell}`);
+        next.classList.add("hover");
+      }
+    });
+  });
+
+  boardCells.forEach((cell) => {
+    cell.addEventListener("mouseleave", () => {
+      // Convert cell to array form, expand, convert arrays back to cell form
+      const activeCells = [];
+      const start = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.format)(cell.classList[0]);
+      for (let i = start[0]; i < start[0] + 3; i++) {
+        let nextCell = [];
+        let x = i;
+        let y = start[1];
+        nextCell.push(x);
+        nextCell.push(y);
+        nextCell = deformat(nextCell);
+        activeCells.push(nextCell);
+      }
+      cell.classList.remove("hover");
+
+      for (let cell of activeCells) {
+        let next = document.querySelector(`.${cell}`);
+        next.classList.remove("hover");
+      }
+    });
+  });
+
+  boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
       const coordinates = cell.classList[0];
 
@@ -671,6 +717,11 @@ const newGame = function createPlayersAndGameBoards() {
 
 
 
+const deformat = function convertArrayToCellFormat(array) {
+  const cell = `_${array[0]}_${array[1]}`;
+  return cell;
+};
+
 
 /***/ }),
 
@@ -682,6 +733,7 @@ const newGame = function createPlayersAndGameBoards() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "format": () => (/* binding */ format),
 /* harmony export */   "gameBoardFactory": () => (/* binding */ gameBoardFactory)
 /* harmony export */ });
 /* harmony import */ var _ship__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ship */ "./src/ship.js");
@@ -800,15 +852,7 @@ const gameBoardFactory = function makeGameBoard() {
     // Coordinates must be stored in board cells as _x_y to prevent CSS errors
 
     if (typeof coordinates === "string" && coordinates !== "auto") {
-      let formatted = coordinates.split("_");
-      formatted.shift();
-      let x;
-      let y;
-      formatted[0] === "0" ? (x = 0) : (x = parseInt(formatted[0]));
-      formatted[1] === "0" ? (y = 0) : (y = parseInt(formatted[1]));
-
-      formatted = [x, y];
-      coordinates = formatted;
+      coordinates = format(coordinates);
     }
 
     // Must check if spot has already been attacked
@@ -872,7 +916,7 @@ const gameBoardFactory = function makeGameBoard() {
   const checkBounds = function checkIfOutOfBounds(potentialSpaces) {
     for (const space in potentialSpaces) {
       let coord = potentialSpaces[space];
-      if (coord[0] > 10 || coord[1] > 10) {
+      if (coord[0] > 15 || coord[1] > 15) {
         return true;
       }
     }
@@ -968,6 +1012,19 @@ const gameBoardFactory = function makeGameBoard() {
 };
 
 
+
+const format = function convertCellToArray(coordinates) {
+  let formatted = coordinates.split("_");
+  formatted.shift();
+  let x;
+  let y;
+  formatted[0] === "0" ? (x = 0) : (x = parseInt(formatted[0]));
+  formatted[1] === "0" ? (y = 0) : (y = parseInt(formatted[1]));
+
+  formatted = [x, y];
+  coordinates = formatted;
+  return coordinates;
+};
 
 
 /***/ }),
