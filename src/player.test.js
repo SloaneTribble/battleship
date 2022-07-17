@@ -6,7 +6,7 @@ test("Successful human attacks to AI will be recorded to human object", () => {
 
   const enemyBoard = gameBoardFactory();
 
-  enemyBoard.placeShip("dingy", "horizontal", [4, 3]);
+  enemyBoard.placeShip("dinghy", "horizontal", [4, 3]);
 
   player.attack(enemyBoard, [4, 3]);
 
@@ -20,7 +20,7 @@ test("Failed human attacks to AI will be recorded to human object", () => {
 
   const enemyBoard = gameBoardFactory();
 
-  enemyBoard.placeShip("dingy", "horizontal", [0, 0]);
+  enemyBoard.placeShip("dinghy", "horizontal", [0, 0]);
 
   player.attack(enemyBoard, [4, 3]);
 
@@ -34,11 +34,11 @@ test("Valid attacks by human against AI will return a useful message", () => {
 
   const enemyBoard = gameBoardFactory();
 
-  enemyBoard.placeShip("dingy", "horizontal", [4, 3]);
+  enemyBoard.placeShip("dinghy", "horizontal", [4, 3]);
 
   const hit = player.attack(enemyBoard, [4, 3]);
 
-  expect(hit).toBe("dingy has been hit");
+  expect(hit).toBe("dinghy has been hit");
 
   const miss = player.attack(enemyBoard, [0, 0]);
 
@@ -50,7 +50,7 @@ test("Invalid attacks by human against AI will return a useful message", () => {
 
   const enemyBoard = gameBoardFactory();
 
-  enemyBoard.placeShip("dingy", "horizontal", [4, 3]);
+  enemyBoard.placeShip("dinghy", "horizontal", [4, 3]);
 
   player.attack(enemyBoard, [0, 0]);
 
@@ -64,7 +64,7 @@ test("AI attacks against human will be recorded to AI object", () => {
 
   const humanBoard = gameBoardFactory();
 
-  humanBoard.placeShip("dingy", "vertical", [2,2]);
+  humanBoard.placeShip("dinghy", "vertical", [2, 2]);
 
   AI.attack(humanBoard, "auto");
 
@@ -75,14 +75,14 @@ test("AI attacks against human will be recorded to AI object", () => {
   expect(humanBoard.attackedSpaces.length).toBe(2);
 });
 
-test.only("If AI has no spaces to attack, a useful message will be returned",()=>{
+test.skip("If AI has no spaces to attack, a useful message will be returned", () => {
   const AI = playerFactory("AI");
 
   const humanBoard = gameBoardFactory();
 
-  humanBoard.placeShip("dingy", "vertical", [2,2]);
+  humanBoard.placeShip("dinghy", "vertical", [2, 2]);
 
-  for(let i = 0; i < 1000; i++){
+  for (let i = 0; i < 1000; i++) {
     AI.attack(humanBoard, "auto");
   }
   expect(humanBoard.attackedSpaces.length).toBe(256);

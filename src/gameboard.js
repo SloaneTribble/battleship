@@ -1,6 +1,8 @@
 import { shipFactory } from "./ship";
 
-const gameBoardFactory = function makeGameBoard() {
+const gameBoardFactory = function makeGameBoard(ownerName = "name") {
+  const owner = ownerName;
+
   const gameOver = false;
 
   /**
@@ -96,7 +98,7 @@ const gameBoardFactory = function makeGameBoard() {
 
     // Coordinates must be stored in board cells as _x_y to prevent CSS errors
 
-    if (typeof coordinates === "string") {
+    if (typeof coordinates === "string" && coordinates !== "auto") {
       coordinates = coordinates.split("_");
       coordinates.shift();
       coordinates = [parseInt(coordinates[0]), parseInt(coordinates[1])];
@@ -194,6 +196,26 @@ const gameBoardFactory = function makeGameBoard() {
     return this.gameOver;
   };
 
+  const showHitLocations = function iterateThroughShipObjects() {
+    const hits = [];
+    for (let ship of shipObjects) {
+      for (let hit of ship.hitLocations) {
+        hits.push(hit);
+      }
+    }
+    return hits;
+  };
+
+  const showSunkLocations = function iterateThroughSunkShips() {
+    const sunkLocations = [];
+    for (let ship of sunkShips) {
+      for (let hit of ship.hitLocations) {
+        sunkLocations.push(hit);
+      }
+    }
+    return sunkLocations;
+  };
+
   const board = {
     checkGame,
     gameOver,
@@ -205,6 +227,8 @@ const gameBoardFactory = function makeGameBoard() {
     receiveAttack,
     attackedSpaces,
     checkOverlap,
+    showHitLocations,
+    showSunkLocations,
   };
 
   return board;

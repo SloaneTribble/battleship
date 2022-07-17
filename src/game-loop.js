@@ -11,7 +11,7 @@ import { shipFactory } from "./ship";
 const newGame = function createPlayersAndGameBoards() {
   const user = playerFactory("human");
 
-  const userBoard = gameBoardFactory();
+  const userBoard = gameBoardFactory("user");
 
   userBoard.placeShip("dinghy", "vertical", [0, 0]);
   userBoard.placeShip("dinghy2", "vertical", [1, 0]);
@@ -23,7 +23,7 @@ const newGame = function createPlayersAndGameBoards() {
 
   const ai = playerFactory("ai");
 
-  const aiBoard = gameBoardFactory();
+  const aiBoard = gameBoardFactory("ai");
 
   aiBoard.placeShip("dinghy", "vertical", [0, 0]);
   aiBoard.placeShip("dinghy2", "vertical", [1, 0]);
@@ -39,42 +39,12 @@ const newGame = function createPlayersAndGameBoards() {
 
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
-      console.log(cell.classList);
+      const coordinates = cell.classList[0];
       const owner = cell.classList[2];
-      console.log(`Owner: ${owner}`);
       const ship = cell.classList[4];
-      console.log("Ship" + ship);
-      const attack = aiBoard.receiveAttack(cell.classList[0]);
-      console.log(attack);
+      let attack = user.attack(aiBoard, coordinates);
 
-      switch (true) {
-        case attack === "miss":
-          cell.classList.remove("empty");
-          cell.classList.add("missed");
-
-          break;
-
-        case attack.includes("hit"):
-          cell.classList.remove("occupied");
-          cell.classList.add("hit");
-
-          break;
-
-        case attack.includes("sunk"):
-          boardCells.forEach((cell) => {
-            console.log(cell.classList[2]);
-            console.log(owner);
-            console.log(cell.classList[4]);
-            console.log(ship);
-            if (
-              (cell.classList[3] === ship || cell.classList[4] === ship) &&
-              cell.classList[2] === owner
-            ) {
-              cell.classList.remove("hit");
-              cell.classList.add("sunk");
-            }
-          });
-      }
+      console.log(aiBoard);
     });
   });
 };
