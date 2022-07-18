@@ -543,9 +543,9 @@ __webpack_require__.r(__webpack_exports__);
 const displayBoard = function displayOneBoard(owner) {
   const board = document.createElement("div");
   board.classList.add("board");
-  for (let i = 0; i <= 15; i++) {
+  for (let i = 0; i <= 11; i++) {
     const column = document.createElement("div");
-    for (let j = 0; j <= 15; j++) {
+    for (let j = 0; j <= 11; j++) {
       const cell = document.createElement("div");
       const coordinates = `_${i}_${j}`;
       column.appendChild(cell);
@@ -691,7 +691,6 @@ const newGame = function createPlayersAndGameBoards() {
       }
     });
   });
-  // asdfasd
 
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
@@ -1123,11 +1122,7 @@ const playerFactory = function createPlayer(playerName) {
   const attack = function attackEnemy(enemyBoard, coordinates) {
     // If AI is attacking, generate random, available coordinates
     if (coordinates === "auto") {
-      if (potentialAttacks.length > 0) {
-        coordinates = potentialAttacks.shift();
-      } else {
-        coordinates = generateCoordinates(enemyBoard);
-      }
+      coordinates = generateCoordinates(enemyBoard);
 
       if (coordinates === "No available spaces") {
         return "No available spaces";
@@ -1145,12 +1140,26 @@ const playerFactory = function createPlayer(playerName) {
     let target = "invalid";
 
     while (target === "invalid") {
-      if (board.attackedSpaces.length > 256) {
+      if (board.attackedSpaces.length > 143) {
         return "No available spaces";
       }
+
+      // Check list of potential attacks before generating a random one
+      while (potentialAttacks.length > 0) {
+        let possibleCoordinates = potentialAttacks.shift();
+
+        let conflict = board.checkOverlap(
+          board.attackedSpaces,
+          possibleCoordinates
+        );
+        if (!conflict) {
+          target = "valid";
+          return possibleCoordinates;
+        }
+      }
       let possibleCoordinates = [];
-      let x = getRandomNumberBetween(0, 15);
-      let y = getRandomNumberBetween(0, 15);
+      let x = getRandomNumberBetween(0, 11);
+      let y = getRandomNumberBetween(0, 11);
       possibleCoordinates.push(x);
       possibleCoordinates.push(y);
 
@@ -1171,15 +1180,29 @@ const playerFactory = function createPlayer(playerName) {
       const successfulX = coordinates[0];
       const successfulY = coordinates[1];
 
+      const possibleDirections = [];
+
+      const approvedDirections = [];
+
       const left = [successfulX - 1, successfulY];
       const right = [successfulX + 1, successfulY];
       const above = [successfulX, successfulY + 1];
       const below = [successfulX, successfulY - 1];
 
-      potentialAttacks.push(left);
-      potentialAttacks.push(right);
-      potentialAttacks.push(above);
-      potentialAttacks.push(below);
+      possibleDirections.push(left);
+      possibleDirections.push(right);
+      possibleDirections.push(above);
+      possibleDirections.push(below);
+
+      for (let direction of possibleDirections) {
+        if (direction[0] < 12 && direction[1] < 12) {
+          approvedDirections.push(direction);
+        }
+      }
+
+      for (let direction of approvedDirections) {
+        potentialAttacks.push(direction);
+      }
     }
   };
 
