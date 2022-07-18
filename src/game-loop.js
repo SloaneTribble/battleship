@@ -112,6 +112,12 @@ const newGame = function createPlayersAndGameBoards() {
       if (setup === false && battle === false) {
         battle = true;
         console.log("Let the battle begin!");
+        boardCells.forEach((cell) => {
+          // Clean up display
+          if (cell.classList.contains("hover")) {
+            cell.classList.remove("hover");
+          }
+        });
         return;
       }
 
