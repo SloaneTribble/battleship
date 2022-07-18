@@ -21,7 +21,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "html,\nbody{\n    box-sizing: border-box;\n    position: relative;\n    min-width: 800px;\n    max-width: 100vw;\n    margin: 0;\n    padding: 0; \n}\n\nbody{\n    min-height: 100vh;\n    display: flex;\n    flex: 1;\n}\n*,\n*:before,\n*:after{\n    box-sizing: inherit;\n    max-width: 100vw;\n    margin: 0;\n}\n\n.page-container{\n    min-width: 800px;\n    width: 100%;\n    display: grid;\n    grid-template-rows: .8fr 80% 1fr;\n    grid-template-columns: 100%;\n}\n\n.game-container{\n    min-width: 800px;\n    border: 2px solid black;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    grid-column: 1/ 4;\n}\n\n.user-container,\n.ai-container{\n    border: 1px solid black;\n    display: grid;\n    grid-template-rows: 1fr 10fr 1fr;\n    justify-items: center;\n    align-items: center;\n    width: 100%;\n    \n}\n\n.player-title{\n    border: .5px solid black;\n    width: 90%;\n    height: 90%;\n    text-align: center;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.user-board,\n.ai-board{\n    border: 1px solid black;\n    height: 90%;\n    width: 90%;\n    display: grid;\n}\n\n.board{\n    display: grid;\n    grid-template-columns: repeat(16, 1fr);\n}\n\n.board-cell{\n    border: .1px solid black;\n    font-size: 1rem;\n}\n\n.board-cell:hover{\n    cursor: pointer;\n}\n\n.empty{\n    background-color: aqua;\n}\n\n.occupied{\n    background-color: darkorange;\n}\n\n.ai.occupied{\n    background-color: blue;\n}\n\n.missed{\n    background-color: grey;\n}\n\n.hit{\n    background-color: red;\n}\n\n.sunk{\n    background-color: brown;\n}\n\n.hover{\n    background-color: beige;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;;IAEI,sBAAsB;IACtB,kBAAkB;IAClB,gBAAgB;IAChB,gBAAgB;IAChB,SAAS;IACT,UAAU;AACd;;AAEA;IACI,iBAAiB;IACjB,aAAa;IACb,OAAO;AACX;AACA;;;IAGI,mBAAmB;IACnB,gBAAgB;IAChB,SAAS;AACb;;AAEA;IACI,gBAAgB;IAChB,WAAW;IACX,aAAa;IACb,gCAAgC;IAChC,2BAA2B;AAC/B;;AAEA;IACI,gBAAgB;IAChB,uBAAuB;IACvB,aAAa;IACb,8BAA8B;IAC9B,iBAAiB;AACrB;;AAEA;;IAEI,uBAAuB;IACvB,aAAa;IACb,gCAAgC;IAChC,qBAAqB;IACrB,mBAAmB;IACnB,WAAW;;AAEf;;AAEA;IACI,wBAAwB;IACxB,UAAU;IACV,WAAW;IACX,kBAAkB;IAClB,aAAa;IACb,uBAAuB;IACvB,mBAAmB;AACvB;;AAEA;;IAEI,uBAAuB;IACvB,WAAW;IACX,UAAU;IACV,aAAa;AACjB;;AAEA;IACI,aAAa;IACb,sCAAsC;AAC1C;;AAEA;IACI,wBAAwB;IACxB,eAAe;AACnB;;AAEA;IACI,eAAe;AACnB;;AAEA;IACI,sBAAsB;AAC1B;;AAEA;IACI,4BAA4B;AAChC;;AAEA;IACI,sBAAsB;AAC1B;;AAEA;IACI,sBAAsB;AAC1B;;AAEA;IACI,qBAAqB;AACzB;;AAEA;IACI,uBAAuB;AAC3B;;AAEA;IACI,uBAAuB;AAC3B","sourcesContent":["html,\nbody{\n    box-sizing: border-box;\n    position: relative;\n    min-width: 800px;\n    max-width: 100vw;\n    margin: 0;\n    padding: 0; \n}\n\nbody{\n    min-height: 100vh;\n    display: flex;\n    flex: 1;\n}\n*,\n*:before,\n*:after{\n    box-sizing: inherit;\n    max-width: 100vw;\n    margin: 0;\n}\n\n.page-container{\n    min-width: 800px;\n    width: 100%;\n    display: grid;\n    grid-template-rows: .8fr 80% 1fr;\n    grid-template-columns: 100%;\n}\n\n.game-container{\n    min-width: 800px;\n    border: 2px solid black;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    grid-column: 1/ 4;\n}\n\n.user-container,\n.ai-container{\n    border: 1px solid black;\n    display: grid;\n    grid-template-rows: 1fr 10fr 1fr;\n    justify-items: center;\n    align-items: center;\n    width: 100%;\n    \n}\n\n.player-title{\n    border: .5px solid black;\n    width: 90%;\n    height: 90%;\n    text-align: center;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.user-board,\n.ai-board{\n    border: 1px solid black;\n    height: 90%;\n    width: 90%;\n    display: grid;\n}\n\n.board{\n    display: grid;\n    grid-template-columns: repeat(16, 1fr);\n}\n\n.board-cell{\n    border: .1px solid black;\n    font-size: 1rem;\n}\n\n.board-cell:hover{\n    cursor: pointer;\n}\n\n.empty{\n    background-color: aqua;\n}\n\n.occupied{\n    background-color: darkorange;\n}\n\n.ai.occupied{\n    background-color: blue;\n}\n\n.missed{\n    background-color: grey;\n}\n\n.hit{\n    background-color: red;\n}\n\n.sunk{\n    background-color: brown;\n}\n\n.hover{\n    background-color: beige;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "html,\nbody{\n    box-sizing: border-box;\n    position: relative;\n    min-width: 800px;\n    max-width: 100vw;\n    margin: 0;\n    padding: 0; \n}\n\nbody{\n    min-height: 100vh;\n    display: flex;\n    flex: 1;\n}\n*,\n*:before,\n*:after{\n    box-sizing: inherit;\n    max-width: 100vw;\n    margin: 0;\n}\n\n.page-container{\n    min-width: 800px;\n    width: 100%;\n    display: grid;\n    grid-template-rows: .8fr 80% 1fr;\n    grid-template-columns: 100%;\n}\n\n.game-container{\n    min-width: 800px;\n    border: 2px solid black;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    grid-column: 1/ 4;\n}\n\n.user-container,\n.ai-container{\n    border: 1px solid black;\n    display: grid;\n    grid-template-rows: 1fr 10fr 1fr;\n    justify-items: center;\n    align-items: center;\n    width: 100%;\n    \n}\n\n.player-title{\n    border: .5px solid black;\n    width: 90%;\n    height: 90%;\n    text-align: center;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.user-board,\n.ai-board{\n    border: 1px solid black;\n    height: 90%;\n    width: 90%;\n    display: grid;\n}\n\n.board{\n    display: grid;\n    grid-template-columns: repeat(16, 1fr);\n}\n\n.board-cell{\n    border: .1px solid black;\n    font-size: 1rem;\n    height: 3rem;\n    width: 3rem;\n}\n\n.board-cell:hover{\n    cursor: pointer;\n}\n\n.empty{\n    background-color: aqua;\n}\n\n.occupied{\n    background-color: darkorange;\n}\n\n.ai.occupied{\n    background-color: aqua;\n}\n\n.missed{\n    background-color: grey;\n}\n\n.hit{\n    background-color: red;\n}\n\n.sunk{\n    background-color: brown;\n}\n\n.hover{\n    background-color: beige;\n}", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;;IAEI,sBAAsB;IACtB,kBAAkB;IAClB,gBAAgB;IAChB,gBAAgB;IAChB,SAAS;IACT,UAAU;AACd;;AAEA;IACI,iBAAiB;IACjB,aAAa;IACb,OAAO;AACX;AACA;;;IAGI,mBAAmB;IACnB,gBAAgB;IAChB,SAAS;AACb;;AAEA;IACI,gBAAgB;IAChB,WAAW;IACX,aAAa;IACb,gCAAgC;IAChC,2BAA2B;AAC/B;;AAEA;IACI,gBAAgB;IAChB,uBAAuB;IACvB,aAAa;IACb,8BAA8B;IAC9B,iBAAiB;AACrB;;AAEA;;IAEI,uBAAuB;IACvB,aAAa;IACb,gCAAgC;IAChC,qBAAqB;IACrB,mBAAmB;IACnB,WAAW;;AAEf;;AAEA;IACI,wBAAwB;IACxB,UAAU;IACV,WAAW;IACX,kBAAkB;IAClB,aAAa;IACb,uBAAuB;IACvB,mBAAmB;AACvB;;AAEA;;IAEI,uBAAuB;IACvB,WAAW;IACX,UAAU;IACV,aAAa;AACjB;;AAEA;IACI,aAAa;IACb,sCAAsC;AAC1C;;AAEA;IACI,wBAAwB;IACxB,eAAe;IACf,YAAY;IACZ,WAAW;AACf;;AAEA;IACI,eAAe;AACnB;;AAEA;IACI,sBAAsB;AAC1B;;AAEA;IACI,4BAA4B;AAChC;;AAEA;IACI,sBAAsB;AAC1B;;AAEA;IACI,sBAAsB;AAC1B;;AAEA;IACI,qBAAqB;AACzB;;AAEA;IACI,uBAAuB;AAC3B;;AAEA;IACI,uBAAuB;AAC3B","sourcesContent":["html,\nbody{\n    box-sizing: border-box;\n    position: relative;\n    min-width: 800px;\n    max-width: 100vw;\n    margin: 0;\n    padding: 0; \n}\n\nbody{\n    min-height: 100vh;\n    display: flex;\n    flex: 1;\n}\n*,\n*:before,\n*:after{\n    box-sizing: inherit;\n    max-width: 100vw;\n    margin: 0;\n}\n\n.page-container{\n    min-width: 800px;\n    width: 100%;\n    display: grid;\n    grid-template-rows: .8fr 80% 1fr;\n    grid-template-columns: 100%;\n}\n\n.game-container{\n    min-width: 800px;\n    border: 2px solid black;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    grid-column: 1/ 4;\n}\n\n.user-container,\n.ai-container{\n    border: 1px solid black;\n    display: grid;\n    grid-template-rows: 1fr 10fr 1fr;\n    justify-items: center;\n    align-items: center;\n    width: 100%;\n    \n}\n\n.player-title{\n    border: .5px solid black;\n    width: 90%;\n    height: 90%;\n    text-align: center;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.user-board,\n.ai-board{\n    border: 1px solid black;\n    height: 90%;\n    width: 90%;\n    display: grid;\n}\n\n.board{\n    display: grid;\n    grid-template-columns: repeat(16, 1fr);\n}\n\n.board-cell{\n    border: .1px solid black;\n    font-size: 1rem;\n    height: 3rem;\n    width: 3rem;\n}\n\n.board-cell:hover{\n    cursor: pointer;\n}\n\n.empty{\n    background-color: aqua;\n}\n\n.occupied{\n    background-color: darkorange;\n}\n\n.ai.occupied{\n    background-color: aqua;\n}\n\n.missed{\n    background-color: grey;\n}\n\n.hit{\n    background-color: red;\n}\n\n.sunk{\n    background-color: brown;\n}\n\n.hover{\n    background-color: beige;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -553,7 +553,6 @@ const displayBoard = function displayOneBoard(owner) {
       cell.classList.add("board-cell");
       cell.classList.add(`${owner}`);
       cell.classList.add("empty");
-      cell.textContent = `_${i}_${j}`;
     }
     board.appendChild(column);
   }
@@ -624,7 +623,7 @@ const newGame = function createPlayersAndGameBoards() {
 
   user.turn = true;
 
-  let alignment = "vertical";
+  const alignment = "vertical";
 
   const boardCells = document.querySelectorAll(".board-cell");
 
@@ -635,6 +634,17 @@ const newGame = function createPlayersAndGameBoards() {
 
   let battle = false;
 
+  const alignmentButton = document.querySelector(".alignment");
+
+  alignmentButton.addEventListener("click", () => {
+    let text = alignmentButton.textContent;
+    console.log(text);
+
+    text === "horizontal"
+      ? (alignmentButton.textContent = "vertical")
+      : (alignmentButton.textContent = "horizontal");
+  });
+
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
       if (setup === false) {
@@ -643,7 +653,11 @@ const newGame = function createPlayersAndGameBoards() {
       const coordinates = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.format)(cell.classList[0]);
       const activeShip = shipList[0];
 
-      let placed = userBoard.placeShip(activeShip, alignment, coordinates);
+      let placed = userBoard.placeShip(
+        activeShip,
+        alignmentButton.textContent,
+        coordinates
+      );
       if (placed === "Out of bounds" || placed === "Ships cannot overlap") {
         console.log(placed);
         return;
@@ -753,7 +767,9 @@ const getCellPreview = function getPotentialCellCoords(
   length
 ) {
   const activeCells = [];
-  if (alignment === "horizontal") {
+  const alignmentButton = document.querySelector(".alignment");
+  let alignmentText = alignmentButton.textContent;
+  if (alignmentText === "horizontal") {
     const start = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.format)(cell.classList[0]);
     for (let i = start[0]; i < start[0] + length; i++) {
       let nextCell = [];
@@ -764,7 +780,7 @@ const getCellPreview = function getPotentialCellCoords(
       nextCell = deformat(nextCell);
       activeCells.push(nextCell);
     }
-  } else if (alignment === "vertical") {
+  } else if (alignmentText === "vertical") {
     const start = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.format)(cell.classList[0]);
     for (let i = start[1]; i < start[1] + length; i++) {
       let nextCell = [];
@@ -775,9 +791,8 @@ const getCellPreview = function getPotentialCellCoords(
       nextCell = deformat(nextCell);
       activeCells.push(nextCell);
     }
-
-    return activeCells;
   }
+  return activeCells;
 };
 
 
