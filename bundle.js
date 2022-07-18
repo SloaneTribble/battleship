@@ -701,6 +701,12 @@ const newGame = function createPlayersAndGameBoards() {
       if (setup === false && battle === false) {
         battle = true;
         console.log("Let the battle begin!");
+        boardCells.forEach((cell) => {
+          // Clean up display
+          if (cell.classList.contains("hover")) {
+            cell.classList.remove("hover");
+          }
+        });
         return;
       }
 
@@ -1185,13 +1191,13 @@ const playerFactory = function createPlayer(playerName) {
       const approvedDirections = [];
 
       const left = [successfulX - 1, successfulY];
-      const right = [successfulX + 1, successfulY];
       const above = [successfulX, successfulY + 1];
+      const right = [successfulX + 1, successfulY];
       const below = [successfulX, successfulY - 1];
 
       possibleDirections.push(left);
-      possibleDirections.push(right);
       possibleDirections.push(above);
+      possibleDirections.push(right);
       possibleDirections.push(below);
 
       for (let direction of possibleDirections) {
