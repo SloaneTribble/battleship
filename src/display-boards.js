@@ -1,9 +1,9 @@
 const displayBoard = function displayOneBoard(owner) {
   const board = document.createElement("div");
   board.classList.add("board");
-  for (let i = 0; i <= 15; i++) {
+  for (let i = 0; i <= 11; i++) {
     const column = document.createElement("div");
-    for (let j = 0; j <= 15; j++) {
+    for (let j = 0; j <= 11; j++) {
       const cell = document.createElement("div");
       const coordinates = `_${i}_${j}`;
       column.appendChild(cell);

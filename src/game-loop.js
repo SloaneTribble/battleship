@@ -102,7 +102,6 @@ const newGame = function createPlayersAndGameBoards() {
       }
     });
   });
-  // asdfasd
 
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {

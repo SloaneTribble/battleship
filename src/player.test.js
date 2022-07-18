@@ -107,3 +107,17 @@ test("Auto generating an attack when potentialAttacks has elements will properly
 
   expect(player.potentialAttacks.length).toBe(2);
 });
+
+test("Successful attacks near board's edge will not generate out of bound coordinates", () => {
+  const player = playerFactory("user");
+
+  const enemyBoard = gameBoardFactory();
+
+  enemyBoard.placeShip("dinghy", "vertical", [11, 10]);
+
+  const hit = player.attack(enemyBoard, [11, 11]);
+
+  expect(hit).toBe("dinghy has been hit");
+
+  expect(player.potentialAttacks).toStrictEqual([[10,11], [11,10]]);
+});
