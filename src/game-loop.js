@@ -35,7 +35,7 @@ const newGame = function createPlayersAndGameBoards() {
 
   user.turn = true;
 
-  let alignment = "vertical";
+  const alignment = "vertical";
 
   const boardCells = document.querySelectorAll(".board-cell");
 
@@ -46,6 +46,17 @@ const newGame = function createPlayersAndGameBoards() {
 
   let battle = false;
 
+  const alignmentButton = document.querySelector(".alignment");
+
+  alignmentButton.addEventListener("click", () => {
+    let text = alignmentButton.textContent;
+    console.log(text);
+
+    text === "horizontal"
+      ? (alignmentButton.textContent = "vertical")
+      : (alignmentButton.textContent = "horizontal");
+  });
+
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
       if (setup === false) {
@@ -54,7 +65,11 @@ const newGame = function createPlayersAndGameBoards() {
       const coordinates = format(cell.classList[0]);
       const activeShip = shipList[0];
 
-      let placed = userBoard.placeShip(activeShip, alignment, coordinates);
+      let placed = userBoard.placeShip(
+        activeShip,
+        alignmentButton.textContent,
+        coordinates
+      );
       if (placed === "Out of bounds" || placed === "Ships cannot overlap") {
         console.log(placed);
         return;
@@ -164,7 +179,9 @@ const getCellPreview = function getPotentialCellCoords(
   length
 ) {
   const activeCells = [];
-  if (alignment === "horizontal") {
+  const alignmentButton = document.querySelector(".alignment");
+  let alignmentText = alignmentButton.textContent;
+  if (alignmentText === "horizontal") {
     const start = format(cell.classList[0]);
     for (let i = start[0]; i < start[0] + length; i++) {
       let nextCell = [];
@@ -175,7 +192,7 @@ const getCellPreview = function getPotentialCellCoords(
       nextCell = deformat(nextCell);
       activeCells.push(nextCell);
     }
-  } else if (alignment === "vertical") {
+  } else if (alignmentText === "vertical") {
     const start = format(cell.classList[0]);
     for (let i = start[1]; i < start[1] + length; i++) {
       let nextCell = [];
@@ -186,7 +203,6 @@ const getCellPreview = function getPotentialCellCoords(
       nextCell = deformat(nextCell);
       activeCells.push(nextCell);
     }
-
-    return activeCells;
   }
+  return activeCells;
 };

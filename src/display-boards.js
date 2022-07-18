@@ -11,7 +11,6 @@ const displayBoard = function displayOneBoard(owner) {
       cell.classList.add("board-cell");
       cell.classList.add(`${owner}`);
       cell.classList.add("empty");
-      cell.textContent = `_${i}_${j}`;
     }
     board.appendChild(column);
   }
