@@ -176,7 +176,7 @@ const gameBoardFactory = function makeGameBoard() {
   const checkBounds = function checkIfOutOfBounds(potentialSpaces) {
     for (const space in potentialSpaces) {
       let coord = potentialSpaces[space];
-      if (coord[0] > 15 || coord[1] > 15) {
+      if (coord[0] > 11 || coord[1] > 11) {
         return true;
       }
     }
@@ -234,8 +234,8 @@ const gameBoardFactory = function makeGameBoard() {
 
     while (target === "invalid") {
       let possibleCoordinates = [];
-      let x = getRandomNumberBetween(0, 15);
-      let y = getRandomNumberBetween(0, 15);
+      let x = getRandomNumberBetween(0, 11);
+      let y = getRandomNumberBetween(0, 11);
       possibleCoordinates.push(x);
       possibleCoordinates.push(y);
 

@@ -1,34 +1,6 @@
 import { gameBoardFactory } from "./gameboard";
 import { playerFactory } from "./player";
 
-test("Successful human attacks to AI will be recorded to human object", () => {
-  const player = playerFactory("human");
-
-  const enemyBoard = gameBoardFactory();
-
-  enemyBoard.placeShip("dinghy", "horizontal", [4, 3]);
-
-  player.attack(enemyBoard, [4, 3]);
-
-  expect(enemyBoard.attackedSpaces).toStrictEqual([[4, 3]]);
-
-  expect(player.successfulAttacks).toStrictEqual([[4, 3]]);
-});
-
-test("Failed human attacks to AI will be recorded to human object", () => {
-  const player = playerFactory("human");
-
-  const enemyBoard = gameBoardFactory();
-
-  enemyBoard.placeShip("dinghy", "horizontal", [0, 0]);
-
-  player.attack(enemyBoard, [4, 3]);
-
-  expect(enemyBoard.attackedSpaces).toStrictEqual([[4, 3]]);
-
-  expect(player.missedAttacks).toStrictEqual([[4, 3]]);
-});
-
 test("Valid attacks by human against AI will return a useful message", () => {
   const player = playerFactory("human");
 
@@ -88,4 +60,50 @@ test.skip("If AI has no spaces to attack, a useful message will be returned", ()
   expect(humanBoard.attackedSpaces.length).toBe(256);
 
   expect(AI.attack(humanBoard, "auto")).toBe("No available spaces");
+});
+
+test("Successful attacks will add several new potential attacks to player object", () => {
+  const player = playerFactory("user");
+
+  const enemyBoard = gameBoardFactory();
+
+  enemyBoard.placeShip("dinghy", "horizontal", [4, 3]);
+
+  const hit = player.attack(enemyBoard, [4, 3]);
+
+  expect(hit).toBe("dinghy has been hit");
+
+  expect(player.potentialAttacks).toStrictEqual([
+    [3, 3],
+    [5, 3],
+    [4, 4],
+    [4, 2],
+  ]);
+});
+
+test("Auto generating an attack when potentialAttacks has elements will properly use the first element", () => {
+  const player = playerFactory("user");
+
+  const enemyBoard = gameBoardFactory();
+
+  enemyBoard.placeShip("dinghy", "horizontal", [4, 3]);
+
+  const hit = player.attack(enemyBoard, [4, 3]);
+
+  expect(hit).toBe("dinghy has been hit");
+
+  expect(player.potentialAttacks).toStrictEqual([
+    [3, 3],
+    [5, 3],
+    [4, 4],
+    [4, 2],
+  ]);
+
+  player.attack(enemyBoard, "auto");
+
+  expect(player.potentialAttacks.length).toBe(3);
+
+  player.attack(enemyBoard, "auto");
+
+  expect(player.potentialAttacks.length).toBe(2);
 });

@@ -15,6 +15,8 @@ const playerFactory = function createPlayer(playerName) {
 
   const successfulAttacks = [];
 
+  const potentialAttacks = [];
+
   const missedAttacks = [];
 
   /**
@@ -26,7 +28,11 @@ const playerFactory = function createPlayer(playerName) {
   const attack = function attackEnemy(enemyBoard, coordinates) {
     // If AI is attacking, generate random, available coordinates
     if (coordinates === "auto") {
-      coordinates = generateCoordinates(enemyBoard);
+      if (potentialAttacks.length > 0) {
+        coordinates = potentialAttacks.shift();
+      } else {
+        coordinates = generateCoordinates(enemyBoard);
+      }
 
       if (coordinates === "No available spaces") {
         return "No available spaces";
@@ -66,10 +72,19 @@ const playerFactory = function createPlayer(playerName) {
   };
 
   const logResult = function pushCoordinatesToArray(result, coordinates) {
-    if (result.includes("hit") || result.includes("sunk")) {
-      successfulAttacks.push(coordinates);
-    } else if (result.includes("miss")) {
-      missedAttacks.push(coordinates);
+    if (result.includes("hit")) {
+      const successfulX = coordinates[0];
+      const successfulY = coordinates[1];
+
+      const left = [successfulX - 1, successfulY];
+      const right = [successfulX + 1, successfulY];
+      const above = [successfulX, successfulY + 1];
+      const below = [successfulX, successfulY - 1];
+
+      potentialAttacks.push(left);
+      potentialAttacks.push(right);
+      potentialAttacks.push(above);
+      potentialAttacks.push(below);
     }
   };
 
@@ -80,6 +95,7 @@ const playerFactory = function createPlayer(playerName) {
   const player = {
     missedAttacks,
     successfulAttacks,
+    potentialAttacks,
     attack,
     getSuccessfulAttacks,
     generateCoordinates,
