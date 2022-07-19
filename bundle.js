@@ -623,6 +623,8 @@ const newGame = function createPlayersAndGameBoards() {
 
   user.turn = true;
 
+  let gameOver = false;
+
   const alignment = "vertical";
 
   const boardCells = document.querySelectorAll(".board-cell");
@@ -638,7 +640,6 @@ const newGame = function createPlayersAndGameBoards() {
 
   alignmentButton.addEventListener("click", () => {
     let text = alignmentButton.textContent;
-    console.log(text);
 
     text === "horizontal"
       ? (alignmentButton.textContent = "vertical")
@@ -647,7 +648,11 @@ const newGame = function createPlayersAndGameBoards() {
 
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
-      if (setup === false || cell.classList.contains("ai")) {
+      if (
+        setup === false ||
+        cell.classList.contains("ai") ||
+        gameOver === true
+      ) {
         return;
       }
       const coordinates = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.format)(cell.classList[0]);
@@ -675,6 +680,9 @@ const newGame = function createPlayersAndGameBoards() {
 
   boardCells.forEach((cell) => {
     cell.addEventListener("mouseenter", () => {
+      if (gameOver === true) {
+        return;
+      }
       if (setup === true && cell.classList.contains("ai")) {
         return;
       }
@@ -695,6 +703,9 @@ const newGame = function createPlayersAndGameBoards() {
 
   boardCells.forEach((cell) => {
     cell.addEventListener("mouseleave", () => {
+      if (gameOver === true) {
+        return;
+      }
       if (setup === false) {
         return;
       }
@@ -711,6 +722,9 @@ const newGame = function createPlayersAndGameBoards() {
 
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
+      if (gameOver === true) {
+        return;
+      }
       if (setup === true) {
         return;
       }
@@ -729,7 +743,13 @@ const newGame = function createPlayersAndGameBoards() {
 
       const coordinates = cell.classList[0];
 
-      user.attack(aiBoard, coordinates);
+      let userAttack = user.attack(aiBoard, coordinates);
+      console.log(userAttack);
+
+      // Don't count invalid attacks;
+      if (userAttack.includes("twice")) {
+        return;
+      }
       updatedBoard = (0,_update_board__WEBPACK_IMPORTED_MODULE_3__.updateBoard)(aiBoard, "ai");
 
       updatedBoard.displayUpdates();
@@ -739,6 +759,7 @@ const newGame = function createPlayersAndGameBoards() {
 
       if (aiSunk) {
         console.log("You win");
+        gameOver = true;
         return;
       }
 
@@ -751,6 +772,7 @@ const newGame = function createPlayersAndGameBoards() {
 
       if (userSunk) {
         console.log("AI wins");
+        gameOver = true;
         return;
       }
     });
