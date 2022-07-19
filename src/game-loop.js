@@ -6,8 +6,6 @@ import { populateBoards } from "./populate-boards";
 
 import { updateBoard } from "./update-board";
 
-// Eventually need to find a way to allow player to position ships
-
 const newGame = function createPlayersAndGameBoards() {
   const user = playerFactory("human");
 
@@ -19,15 +17,15 @@ const newGame = function createPlayersAndGameBoards() {
 
   const aiBoard = gameBoardFactory("ai");
 
-  let placed = aiBoard.autoPlace("dinghy");
+  aiBoard.autoPlace("dinghy");
 
-  placed = aiBoard.autoPlace("dinghy2");
+  aiBoard.autoPlace("dinghy2");
 
-  placed = aiBoard.autoPlace("submarine");
+  aiBoard.autoPlace("submarine");
 
-  placed = aiBoard.autoPlace("battleship");
+  aiBoard.autoPlace("battleship");
 
-  placed = aiBoard.autoPlace("carrier");
+  aiBoard.autoPlace("carrier");
 
   populateBoards("ai", aiBoard);
 
@@ -49,14 +47,6 @@ const newGame = function createPlayersAndGameBoards() {
   let battle = false;
 
   const alignmentButton = document.querySelector(".alignment");
-
-  alignmentButton.addEventListener("click", () => {
-    let text = alignmentButton.textContent;
-
-    text === "horizontal"
-      ? (alignmentButton.textContent = "vertical")
-      : (alignmentButton.textContent = "horizontal");
-  });
 
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {

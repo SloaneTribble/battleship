@@ -25,4 +25,21 @@ const displayBoards = function displayTheBoards() {
   aiBoardContainer.appendChild(displayBoard("ai"));
 };
 
-export { displayBoards };
+const refreshBoards = function clearAndPopulateAgain() {
+  const userBoardContainer = document.querySelector(".user-board-container");
+
+  while (userBoardContainer.firstChild) {
+    userBoardContainer.removeChild(userBoardContainer.firstChild);
+  }
+  userBoardContainer.appendChild(displayBoard("user"));
+
+  const aiBoardContainer = document.querySelector(".ai-board-container");
+  aiBoardContainer.removeChild(aiBoardContainer.firstChild);
+
+  while (aiBoardContainer.firstChild) {
+    aiBoardContainer.removeChild(aiBoardContainer.firstChild);
+  }
+  aiBoardContainer.appendChild(displayBoard("ai"));
+};
+
+export { displayBoards, refreshBoards };
