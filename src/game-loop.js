@@ -59,7 +59,7 @@ const newGame = function createPlayersAndGameBoards() {
 
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
-      if (setup === false) {
+      if (setup === false || cell.classList.contains("ai")) {
         return;
       }
       const coordinates = format(cell.classList[0]);
@@ -87,6 +87,9 @@ const newGame = function createPlayersAndGameBoards() {
 
   boardCells.forEach((cell) => {
     cell.addEventListener("mouseenter", () => {
+      if (setup === true && cell.classList.contains("ai")) {
+        return;
+      }
       if (setup === false) {
         return;
       }
