@@ -538,7 +538,8 @@ module.exports = styleTagTransform;
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "displayBoards": () => (/* binding */ displayBoards)
+/* harmony export */   "displayBoards": () => (/* binding */ displayBoards),
+/* harmony export */   "refreshBoards": () => (/* binding */ refreshBoards)
 /* harmony export */ });
 const displayBoard = function displayOneBoard(owner) {
   const board = document.createElement("div");
@@ -564,6 +565,23 @@ const displayBoards = function displayTheBoards() {
   userBoardContainer.appendChild(displayBoard("user"));
 
   const aiBoardContainer = document.querySelector(".ai-board-container");
+  aiBoardContainer.appendChild(displayBoard("ai"));
+};
+
+const refreshBoards = function clearAndPopulateAgain() {
+  const userBoardContainer = document.querySelector(".user-board-container");
+
+  while (userBoardContainer.firstChild) {
+    userBoardContainer.removeChild(userBoardContainer.firstChild);
+  }
+  userBoardContainer.appendChild(displayBoard("user"));
+
+  const aiBoardContainer = document.querySelector(".ai-board-container");
+  aiBoardContainer.removeChild(aiBoardContainer.firstChild);
+
+  while (aiBoardContainer.firstChild) {
+    aiBoardContainer.removeChild(aiBoardContainer.firstChild);
+  }
   aiBoardContainer.appendChild(displayBoard("ai"));
 };
 
@@ -594,8 +612,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// Eventually need to find a way to allow player to position ships
-
 const newGame = function createPlayersAndGameBoards() {
   const user = (0,_player__WEBPACK_IMPORTED_MODULE_1__.playerFactory)("human");
 
@@ -607,15 +623,15 @@ const newGame = function createPlayersAndGameBoards() {
 
   const aiBoard = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.gameBoardFactory)("ai");
 
-  let placed = aiBoard.autoPlace("dinghy");
+  aiBoard.autoPlace("dinghy");
 
-  placed = aiBoard.autoPlace("dinghy2");
+  aiBoard.autoPlace("dinghy2");
 
-  placed = aiBoard.autoPlace("submarine");
+  aiBoard.autoPlace("submarine");
 
-  placed = aiBoard.autoPlace("battleship");
+  aiBoard.autoPlace("battleship");
 
-  placed = aiBoard.autoPlace("carrier");
+  aiBoard.autoPlace("carrier");
 
   (0,_populate_boards__WEBPACK_IMPORTED_MODULE_2__.populateBoards)("ai", aiBoard);
 
@@ -637,14 +653,6 @@ const newGame = function createPlayersAndGameBoards() {
   let battle = false;
 
   const alignmentButton = document.querySelector(".alignment");
-
-  alignmentButton.addEventListener("click", () => {
-    let text = alignmentButton.textContent;
-
-    text === "horizontal"
-      ? (alignmentButton.textContent = "vertical")
-      : (alignmentButton.textContent = "horizontal");
-  });
 
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
@@ -1550,6 +1558,27 @@ __webpack_require__.r(__webpack_exports__);
 (0,_display_boards__WEBPACK_IMPORTED_MODULE_1__.displayBoards)();
 
 (0,_game_loop__WEBPACK_IMPORTED_MODULE_2__.newGame)();
+
+const newGameButton = document.querySelector(".new-game");
+
+newGameButton.addEventListener("click", () => {
+  (0,_display_boards__WEBPACK_IMPORTED_MODULE_1__.refreshBoards)();
+  (0,_game_loop__WEBPACK_IMPORTED_MODULE_2__.newGame)();
+});
+
+const alignmentButton = document.querySelector(".alignment");
+
+alignmentButton.addEventListener(
+  "click",
+  () => {
+    let text = alignmentButton.textContent;
+
+    text === "horizontal"
+      ? (alignmentButton.textContent = "vertical")
+      : (alignmentButton.textContent = "horizontal");
+  },
+  0
+);
 
 })();
 
