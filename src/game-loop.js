@@ -19,7 +19,7 @@ const newGame = function createPlayersAndGameBoards() {
 
   aiBoard.autoPlace("dinghy");
 
-  aiBoard.autoPlace("dinghy2");
+  aiBoard.autoPlace("skipper");
 
   aiBoard.autoPlace("submarine");
 
@@ -31,15 +31,13 @@ const newGame = function createPlayersAndGameBoards() {
 
   let updatedBoard = updateBoard(aiBoard, "ai");
 
-  user.turn = true;
-
   let gameOver = false;
 
   const alignment = "vertical";
 
   const boardCells = document.querySelectorAll(".board-cell");
 
-  const shipList = ["dinghy", "dinghy2", "submarine", "battleship", "carrier"];
+  const shipList = ["dinghy", "skipper", "submarine", "battleship", "carrier"];
   const lengthList = [2, 2, 3, 4, 5, 5];
 
   let setup = true;
@@ -47,6 +45,12 @@ const newGame = function createPlayersAndGameBoards() {
   let battle = false;
 
   const alignmentButton = document.querySelector(".alignment");
+
+  const messageContainer = document.querySelector(".message-container");
+
+  const delay = 1000;
+
+  messageContainer.textContent = `The ${shipList[0]} shall now be placed.`;
 
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
@@ -60,16 +64,21 @@ const newGame = function createPlayersAndGameBoards() {
       const coordinates = format(cell.classList[0]);
       const activeShip = shipList[0];
 
+      let nextShip = shipList[1];
+
+      messageContainer.textContent = `The ${nextShip} shall now be placed.`;
+
       let placed = userBoard.placeShip(
         activeShip,
         alignmentButton.textContent,
         coordinates
       );
       if (placed === "Out of bounds" || placed === "Ships cannot overlap") {
-        console.log(placed);
+        messageContainer.textContent =
+          "Make sure ships are within boundaries and don't overlap";
         return;
       }
-      console.log(placed);
+
       populateBoards("user", userBoard);
       shipList.shift();
       lengthList.shift();
@@ -133,7 +142,7 @@ const newGame = function createPlayersAndGameBoards() {
 
       if (setup === false && battle === false) {
         battle = true;
-        console.log("Let the battle begin!");
+        messageContainer.textContent = "Let the battle begin!";
         boardCells.forEach((cell) => {
           // Clean up display
           if (cell.classList.contains("hover")) {
@@ -144,12 +153,30 @@ const newGame = function createPlayersAndGameBoards() {
       }
 
       const coordinates = cell.classList[0];
+      let cellOwner = cell.classList[2];
 
+      if (cellOwner === "user") {
+        messageContainer.textContent = "One shall not strike their own waters!";
+        return;
+      }
       let userAttack = user.attack(aiBoard, coordinates);
-      console.log(userAttack);
+      if (userAttack.includes("struck")) {
+        messageContainer.textContent = `Ye have stricken a ship!`;
+      }
+
+      if (userAttack.includes("sunk")) {
+        messageContainer.textContent = `Ye have sunk Barbosa's prized ${userAttack[1]}!`;
+      }
+
+      if (userAttack.includes("miss")) {
+        messageContainer.textContent =
+          "Alas, ye have stricken only the blue...";
+      }
 
       // Don't count invalid attacks;
       if (userAttack.includes("twice")) {
+        messageContainer.textContent =
+          "The same spot shall not be attacked twice.";
         return;
       }
       updatedBoard = updateBoard(aiBoard, "ai");
@@ -160,23 +187,30 @@ const newGame = function createPlayersAndGameBoards() {
       console.log(aiSunk);
 
       if (aiSunk) {
-        console.log("You win");
+        messageContainer.textContent =
+          "At last, Barbosa shall terrorize the world's oceans no longer.";
         gameOver = true;
         return;
       }
 
-      let aiAttack = ai.attack(userBoard, "auto");
-      console.log(aiAttack);
-      updatedBoard = updateBoard(userBoard, "user");
-      updatedBoard.displayUpdates();
+      setTimeout(function () {
+        let aiAttack = ai.attack(userBoard, "auto");
+        if (aiAttack.includes("struck") || aiAttack.includes("sunk")) {
+          messageContainer.textContent = `Barbosa has ${aiAttack[0]} your ${aiAttack[1]}!`;
+        } else {
+          messageContainer.textContent = `Ye have evaded Barbosa's cruel hand for now.`;
+        }
+        updatedBoard = updateBoard(userBoard, "user");
+        updatedBoard.displayUpdates();
 
-      let userSunk = userBoard.checkGame();
+        let userSunk = userBoard.checkGame();
 
-      if (userSunk) {
-        console.log("AI wins");
-        gameOver = true;
-        return;
-      }
+        if (userSunk) {
+          messageContainer.textContent = "Alas, Cap'n Barbosa wins again!";
+          gameOver = true;
+          return;
+        }
+      }, delay);
     });
   });
 };

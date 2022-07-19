@@ -132,12 +132,12 @@ const gameBoardFactory = function makeGameBoard() {
 
       const sunk = checkStatus(hitShip);
       if (sunk) {
-        return `${hitShip} has been sunk`;
+        return ["sunk", hitShip];
       }
-      return `${hitShip} has been hit`;
+      return ["struck", hitShip];
     } else {
       missedLocations.push(coordinates);
-      return "miss";
+      return "missed";
     }
   };
 

@@ -9,10 +9,6 @@
  */
 
 const playerFactory = function createPlayer(playerName) {
-  const name = playerName;
-
-  const turn = false;
-
   const successfulAttacks = [];
 
   const potentialAttacks = [];
@@ -87,7 +83,7 @@ const playerFactory = function createPlayer(playerName) {
   };
 
   const logResult = function pushCoordinatesToArray(result, coordinates) {
-    if (result.includes("hit")) {
+    if (result.includes("struck")) {
       const successfulX = coordinates[0];
       const successfulY = coordinates[1];
 
@@ -133,7 +129,6 @@ const playerFactory = function createPlayer(playerName) {
     attack,
     getSuccessfulAttacks,
     generateCoordinates,
-    turn,
   };
   return player;
 };
