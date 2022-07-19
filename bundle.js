@@ -647,7 +647,7 @@ const newGame = function createPlayersAndGameBoards() {
 
   boardCells.forEach((cell) => {
     cell.addEventListener("click", () => {
-      if (setup === false) {
+      if (setup === false || cell.classList.contains("ai")) {
         return;
       }
       const coordinates = (0,_gameboard__WEBPACK_IMPORTED_MODULE_0__.format)(cell.classList[0]);
@@ -675,6 +675,9 @@ const newGame = function createPlayersAndGameBoards() {
 
   boardCells.forEach((cell) => {
     cell.addEventListener("mouseenter", () => {
+      if (setup === true && cell.classList.contains("ai")) {
+        return;
+      }
       if (setup === false) {
         return;
       }
@@ -1167,7 +1170,12 @@ const playerFactory = function createPlayer(playerName) {
 
       // Check list of potential attacks before generating a random one
       while (potentialAttacks.length > 0) {
-        let possibleCoordinates = potentialAttacks.shift();
+        // flip a coin to decide whether to try a coordinate to left/right, or one above/below hit spot
+        let coinflip = getRandomNumberBetween(0, 1);
+        let possibleCoordinates;
+        coinflip === 0
+          ? (possibleCoordinates = potentialAttacks.shift())
+          : (possibleCoordinates = potentialAttacks.pop());
 
         let conflict = board.checkOverlap(
           board.attackedSpaces,
@@ -1223,6 +1231,11 @@ const playerFactory = function createPlayer(playerName) {
 
       for (let direction of approvedDirections) {
         potentialAttacks.push(direction);
+      }
+    } else if (result.includes("sunk")) {
+      // If ship is sunk, don't keep attacking adjacent spots;
+      while (potentialAttacks.length > 0) {
+        potentialAttacks.shift();
       }
     }
   };
