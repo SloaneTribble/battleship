@@ -15,7 +15,7 @@ button{
 }
 
 button:hover{
-    cursor: pointer;
+    cursor: crosshair;
 }
 
 body{
@@ -148,7 +148,7 @@ body{
 }
 
 .board-cell:hover{
-    cursor: pointer;
+    cursor: crosshair;
 }
 
 .empty{

@@ -22,9 +22,9 @@ alignmentButton.addEventListener(
   () => {
     let text = alignmentButton.textContent;
 
-    text === "horizontal"
-      ? (alignmentButton.textContent = "vertical")
-      : (alignmentButton.textContent = "horizontal");
+    text === "Horizontal"
+      ? (alignmentButton.textContent = "Vertical")
+      : (alignmentButton.textContent = "Horizontal");
   },
   0
 );
