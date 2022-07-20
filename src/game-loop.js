@@ -230,7 +230,7 @@ const getCellPreview = function getPotentialCellCoords(
   const activeCells = [];
   const alignmentButton = document.querySelector(".alignment");
   let alignmentText = alignmentButton.textContent;
-  if (alignmentText === "Horizontal") {
+  if (alignmentText === "horizontal") {
     const start = format(cell.classList[0]);
     for (let i = start[0]; i < start[0] + length; i++) {
       let nextCell = [];
@@ -241,7 +241,7 @@ const getCellPreview = function getPotentialCellCoords(
       nextCell = deformat(nextCell);
       activeCells.push(nextCell);
     }
-  } else if (alignmentText === "Vertical") {
+  } else if (alignmentText === "vertical") {
     const start = format(cell.classList[0]);
     for (let i = start[1]; i < start[1] + length; i++) {
       let nextCell = [];

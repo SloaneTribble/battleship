@@ -44,7 +44,7 @@ const gameBoardFactory = function makeGameBoard() {
     const length = currentShip.shipLength;
 
     // If ship is placed horizontally, it will occupy several spaces along x-axis, and vice versa
-    const axisIndex = orientation === "Horizontal" ? 0 : 1;
+    const axisIndex = orientation === "horizontal" ? 0 : 1;
 
     // Use ship length and orientation to spaces that it occupies, add those to gameboard's record
 
@@ -98,7 +98,7 @@ const gameBoardFactory = function makeGameBoard() {
   const autoPlace = function aiPlaceShip(name) {
     const coinFlip = getRandomNumberBetween(0, 1);
     let alignment = "";
-    coinFlip === 0 ? (alignment = "Vertical") : (alignment = "Horizontal");
+    coinFlip === 0 ? (alignment = "vertical") : (alignment = "horizontal");
 
     let placed = placeShip(name, alignment, generateCoordinates());
 
