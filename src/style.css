@@ -5,6 +5,16 @@ body{
     min-width: 100vw;
     margin: 0;
     padding: 0; 
+    font-family: 'Luxurious Roman', cursive;
+    color:antiquewhite;
+}
+
+button{
+    font-family: 'Luxurious Roman', cursive;
+}
+
+button:hover{
+    cursor: pointer;
 }
 
 body{
@@ -22,6 +32,8 @@ body{
 }
 
 .page-container{
+    background: url(./images/sea.jpg);
+    background-size: cover;
     min-width: 500px;
     min-height: 930px;
     width: 100%;
@@ -36,6 +48,8 @@ body{
     justify-self: center;
     align-self: center;
     text-align: center;
+    background-color: black;
+    padding: 0 10px;
 }
 
 .new-game-button-container{
@@ -45,6 +59,8 @@ body{
 }
 
 .game-container{
+    background: url("./images/wood.jpg");
+    background-size: cover;
     min-width: 500px;
     border: 2px solid black;
     width: fit-content;
@@ -58,7 +74,6 @@ body{
 .ai-container{
     min-width: 250px;
     max-width: 80vw;
-    border: 1px solid black;
     justify-content: center;
     justify-items: center;
     
@@ -76,6 +91,19 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+.player-title.enemy{
+    background: url("./images/parrot.jpg");
+    background-position: center;
+    border: ridge 1px gold;
+}
+
+.player-title.user{
+    background: url("./images/gold.jpg");
+    background-position: center;
+    border: groove 1px whitesmoke;
+}
+
 
 .ai-board-container,
 .user-board{
