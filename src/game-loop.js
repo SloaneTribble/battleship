@@ -48,7 +48,7 @@ const newGame = function createPlayersAndGameBoards() {
 
   const messageContainer = document.querySelector(".message-container");
 
-  const delay = 1000;
+  const delay = 1100;
 
   messageContainer.textContent = `The ${shipList[0]} shall now be placed.`;
 
@@ -161,7 +161,7 @@ const newGame = function createPlayersAndGameBoards() {
       }
       let userAttack = user.attack(aiBoard, coordinates);
       if (userAttack.includes("struck")) {
-        messageContainer.textContent = `Ye have stricken a ship!`;
+        messageContainer.textContent = `Ye have struck a ship!`;
       }
 
       if (userAttack.includes("sunk")) {
@@ -169,8 +169,7 @@ const newGame = function createPlayersAndGameBoards() {
       }
 
       if (userAttack.includes("miss")) {
-        messageContainer.textContent =
-          "Alas, ye have stricken only the blue...";
+        messageContainer.textContent = "Alas, ye have struck only the blue...";
       }
 
       // Don't count invalid attacks;
